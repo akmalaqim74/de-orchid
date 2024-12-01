@@ -1,0 +1,33 @@
+<div >
+    <div class="grid grid-cols-1">
+      <div class="col-span-1 text-center" *ngIf="showIcon">
+        <img [src]="imgIcon" [class]="iconClass" />
+      </div>
+      <div class="col-span-1 py-5 text-center">
+        <p class="text-xl text-white mb-2.5" *ngIf="showTitle">{{ title }}</p>
+        <p class="text-base text-white mb-0" *ngIf="showDescription" [innerHTML]="description"></p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="flex justify-center w-full items-center space-x-4 mb-4 mt-4">
+      <button
+        (click)="onNoClick()"
+        *ngIf="showCancelButton"
+        mat-raised-button
+        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        cdkFocusInitial
+      >
+        {{ cancelLabel }}
+      </button>
+      <button
+        (click)="onSubmit()"
+        *ngIf="showSubmitButton"
+        mat-raised-button
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        cdkFocusInitial
+      >
+        {{ successLabel }}
+      </button>
+    </div>
+  </div>
