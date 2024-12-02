@@ -80,7 +80,13 @@ export class ShareFormModalComponent {
     // Trigger validation
     this.timesheetForm.updateValueAndValidity();
     if (this.timesheetForm.valid) {
-      const timesheetData = this.timesheetForm.value;
+      const formValue = this.timesheetForm.value;
+      const timesheetData = {
+        ...formValue,
+         // en-CA gives YYYY-MM-DD format
+        from: formValue.from.toLocaleDateString('en-CA'),
+        to: formValue.to.toLocaleDateString('en-CA')
+      };
       if(this.edit){
         console.log("Edit TimesheetData",timesheetData);
         updateTimeSheet(timesheetData).then(res => {
