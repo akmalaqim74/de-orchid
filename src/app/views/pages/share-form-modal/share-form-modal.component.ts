@@ -83,9 +83,9 @@ export class ShareFormModalComponent {
       const formValue = this.timesheetForm.value;
       const timesheetData = {
         ...formValue,
-         // en-CA gives YYYY-MM-DD format
-        from: formValue.from.toLocaleDateString('en-CA'),
-        to: formValue.to.toLocaleDateString('en-CA')
+        
+         from: formatDate(formValue.from, 'yyyy-MM-dd', 'en-US'),
+         to: formatDate(formValue.to, 'yyyy-MM-dd', 'en-US')
       };
       if(this.edit){
         console.log("Edit TimesheetData",timesheetData);

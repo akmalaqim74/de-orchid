@@ -27,6 +27,8 @@ export class TimesheetComponent {
   timesheets: Timesheet[] = [];
   private timesheetSubject = new BehaviorSubject<Timesheet[]>([]);
   searchCriteria: string = '';
+  sortColumn: string = 'date_from';
+  sortDirection:string = 'asc';
   currentPage: number = 1;
   pageSize: number = 10;
   totalPages: number = 1;
@@ -54,8 +56,13 @@ export class TimesheetComponent {
       });
     });
   }
+  toggleSort():void{
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    this.search();
+  }
+
   search(): void {
-    getTimeSheets(this.searchCriteria)
+    getTimeSheets(this.searchCriteria, this.sortColumn, this.sortDirection)
     .then(response => {
       this.timesheets = response;
     }).catch(error => {

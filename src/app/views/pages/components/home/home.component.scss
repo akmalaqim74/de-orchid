@@ -1,0 +1,8 @@
+.mobile-hall-description-container {
+    @media (max-width: 640px) {
+      max-width: 190px;
+      width: 190px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }

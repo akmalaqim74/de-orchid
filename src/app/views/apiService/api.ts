@@ -20,14 +20,16 @@ export function getStatus(): Promise<any[]> {
     }).then(response => response.json());
 }
 
-export function getTimeSheets(searchCriteria: string): Promise<any[]> {
+export function getTimeSheets(searchCriteria: string, sortColumn?:string, sortDirection?:string): Promise<any[]> {
     return fetch(`${baseUrl}/getTimesheet`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            searchCriteria: searchCriteria
+            searchCriteria: searchCriteria,
+            sortColumn: sortColumn,
+            sortDirection: sortDirection
         })
     }).then(response => response.json());
 }

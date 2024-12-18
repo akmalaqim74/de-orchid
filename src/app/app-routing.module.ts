@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TimesheetComponent } from './views/pages/components/timesheet/timesheet.component';
+import { HomeComponent } from './views/pages/components/home/home.component';
 
 const routes: Routes =  [
   {
     path: '',
-    component: TimesheetComponent
+    component: HomeComponent
   }
   
 ];
@@ -14,4 +14,4 @@ const routes: Routes =  [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

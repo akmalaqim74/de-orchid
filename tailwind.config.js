@@ -7,8 +7,15 @@ module.exports = {
     './src/**/*.{html,ts,scss,css}',
     './src/**/*.component.{html,ts,scss,css}'
   ],
-  theme: {
-    extend: {},
+  theme:{
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#BC9161',
+          hover: '#A67B4F'  // Darker shade for hover states
+        }
+      }
+    }
   },
   plugins: [],
   corePlugins: {

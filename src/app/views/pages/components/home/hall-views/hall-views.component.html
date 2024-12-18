@@ -1,0 +1,124 @@
+<div class="w-full relative h-[600px]"
+[ngStyle]="{'background-image': 'url(' + currentHallPhotos[currentHallIndex].thumbnailUrl + ')'}">
+    <!-- Hall Background Carousel -->
+    <div class="absolute inset-0 w-full h-full">
+        <div class="relative w-full h-full overflow-hidden m-auto">
+          <!-- Primary Hall Image -->
+          <div [@slideAnimation]="currentHallIndex">
+            <img 
+              #currentImage
+              [src]="currentHallPhotos[currentHallIndex].thumbnailUrl" 
+              class="w-full object-contain"
+              [alt]="currentHallPhotos[currentHallIndex].title || 'Hall photo'"
+              (load)="checkImageHeight(currentImage)">
+          </div>
+      
+        <!-- Secondary Hall Image -->
+        <div 
+            *ngIf="isImageHeightInsufficient" 
+            class="flex-grow h-full overflow-hidden"
+            [@fadeAnimation]>
+            <img 
+                [src]="currentHallIndex < hallPhotosLength - 1 
+                ? currentHallPhotos[currentHallIndex + 1].thumbnailUrl 
+                : currentHallPhotos[0].thumbnailUrl"
+                class="w-full h-full object-cover"
+                alt="Additional Hall Image">
+        </div>
+      
+          <!-- Hall Navigation Buttons -->
+          <button 
+            *ngIf="currentHallIndex > 0"
+            (click)="prevHallPhoto()"
+            class="z-30 absolute left-4 top-1/2 -translate-y-1/2 md:bg-white bg-white/30 rounded-full p-2 hover:bg-white transition-all duration-300"
+            [@fadeAnimation]
+            aria-label="Previous hall photo">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button 
+            *ngIf="currentHallIndex < currentHallPhotos.length - 1"
+            (click)="nextHallPhoto()"
+            class="z-30 absolute right-4 top-1/2 -translate-y-1/2 md:bg-white bg-white/30 rounded-full p-2 hover:bg-white transition-all duration-300"
+            [@fadeAnimation]
+            aria-label="Next hall photo">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+      
+          <!-- Hall Dots Navigation -->
+          <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+            <button 
+              *ngFor="let photo of currentHallPhotos; let i = index"
+              (click)="goToHallSlide(i)"
+              [attr.aria-label]="'Go to hall slide ' + (i + 1)"
+              [class]="'w-2 h-2 rounded-full transition-all duration-300 ' + 
+                (i === currentHallIndex ? 'bg-primary w-4' : 'bg-gray-300')"
+              [@fadeAnimation]>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+
+    <div class="flex flex-col justify-between h-full">
+        <!-- Hall Selection Tabs -->
+        <div class="relative mt-2">
+            <div class="flex justify-center w-full mb-6 md:mb-8 px-4 md:px-0">
+              <div class="flex w-full md:w-[80%] gap-1 md:gap-4">
+                <button 
+                  *ngFor="let hall of halls"
+                  [ngClass]="{'bg-primary text-white': selectedHall === hall.id, 'bg-white text-primary': selectedHall !== hall.id}"
+                  class="flex-1 border-2 border-primary px-1 md:px-6 py-0.5 md:py-3 rounded-lg hover:bg-primary hover:text-white transition-all duration-300 text-[10px] md:text-base"
+                  (click)="selectHall(hall.id)"
+                  [attr.aria-label]="'View ' + hall.name">
+                  {{ hall.name }}
+                </button>
+              </div>
+            </div>
+        </div>
+      
+      <!-- Hall Content -->
+      <div class="w-[300px] sm:w-full md:absolute md:bottom-0 left-0 right-0 p-4 md:p-8">
+        <div class="space-y-4 md:pl-24 md:pr-24">
+          <div class="space-y-4" [@hallTransition]>
+            <div class="flex justify-between">
+              <div class="space-y-2 bg-white/30 backdrop-blur-sm p-4 rounded-md sm:w-[500px]">
+                  <div class="flex flex-col justify-between mx-auto">
+                      <h2 class="text-primary text-xl md:text-2xl font-semibold ">{{ currentHall.name }}</h2>
+                      <h2 class="text-xl font-bold text-primary" > Starting from RM {{ currentHall.startingPrice }}</h2>
+                  </div>
+                
+                <p class="text-black">{{ currentHall.description }}</p>   
+                <ul class="text-black space-y-1">
+                  <li *ngFor="let feature of currentHall.features">{{ feature }}</li>
+                </ul>
+                <!--Button -->
+                <div class="flex gap-4 pt-3">
+                  <button 
+                    class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-hover transition-all duration-300"
+                    (click)="onBookNow(currentHall)"
+                    [@fadeAnimation]>
+                    Book Now
+                  </button>
+                  <button 
+                    class="bg-white border-2 border-primary text-primary px-6 py-2 rounded-lg hover:bg-primary hover:text-white transition-all duration-300"
+                    (click)="onViewDetails(currentHall)"
+                    [@fadeAnimation]>
+                    View Details
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+      
+          
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
