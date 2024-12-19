@@ -41,40 +41,34 @@ export class MainSectionComponent {
   backgroundImage = 'assets/pelaminpengantin.jpg';
   showModal = false;
   imagePath:String = '';
-
+  config = {
+    IMAGE: {
+      MIN_WIDTH: 80,
+      MAX_WIDTH: 100,
+      HEIGHT: 120
+    },
+    SPACING: {
+      COLUMN_OFFSET: 17,  // Percentage for horizontal spacing
+      ROW_OFFSET: 100    // Pixels for vertical spacing
+    }
+  }
   
   weddingPhotos: Photo[] = [
-    { thumbnailUrl: 'assets/cafe.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe5.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe5.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe5.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe5.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe5.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe5.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-    { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
+    { thumbnailUrl: 'assets/wedding-photos/image.jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/images.jpg', title: '' },
+    { thumbnailUrl: 'assets/wedding-photos/image(1).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(3).jpg', title: '' },
+    { thumbnailUrl: 'assets/wedding-photos/image(4).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(5).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(6).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(7).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(8).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(9).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(10).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(11).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(12).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(13).jpg', title: 'Wedding De Orchid' },
+    { thumbnailUrl: 'assets/wedding-photos/image(14).jpg', title: 'Wedding De Orchid' }
   ];
 
   
@@ -96,17 +90,7 @@ export class MainSectionComponent {
   goToSlide(index: number) {
     this.currentIndex = index;
   }
-  getPhotoStyle(index: number): { [key: string]: string } {
-    // True random height between 41px and 60px
-    const minHeight = 60;
-    const maxHeight = 140;
-    const randomHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
-  
-    return {
-      height: `${randomHeight}px`,
-      width: '80px'
-    };
-  }
+
   openImageModal(currentImagePath:String): void {
     this.showModal = true;
     document.body.style.overflow = 'hidden';
@@ -115,6 +99,26 @@ export class MainSectionComponent {
   closeImageModal(): void {
     this.showModal = false;
     document.body.style.overflow = 'auto'; // Restore scrolling
+  }
+  getPhotoStyle(index: number) {
+    const column = index % 5.5;
+    const row = Math.floor(index / 4);
+    
+    return {
+      'left': `${column * this.config.SPACING.COLUMN_OFFSET}%`,
+      'top': `${row * this.config.SPACING.ROW_OFFSET}px`,
+      'width': `${this.getRandomSize()}px`,
+      'height': `${this.config.IMAGE.HEIGHT}px`,
+      'z-index': index
+    };
+  }
+
+  getRandomSize(): number {
+    return Math.floor(
+      Math.random() * 
+      (this.config.IMAGE.MAX_WIDTH - this.config.IMAGE.MIN_WIDTH) + 
+      this.config.IMAGE.MIN_WIDTH
+    );
   }
 
 }

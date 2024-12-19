@@ -31,15 +31,22 @@
             
             <!-- Right side mosaic gallery - fixed row height -->
             <div class="flex-1 md:w-2/3 mt-4 md:mt-0 bg-white/10 backdrop-blur">
-                <div class="h-[430px] w-full">
-                    <div class="grid auto-rows-[140px] grid-cols-5 md:grid-cols-7 gap-0.5">
-                        <div *ngFor="let photo of weddingPhotos; let i = index"
-                             class="relative group rounded-sm overflow-hidden w-[80px] flex items-center justify-center"
-                             (click)="openImageModal(photo.thumbnailUrl)">
-                            <img [src]="photo.thumbnailUrl"
-                                 [alt]="photo.title"
+                <!-- Gallery container -->
+                <div class="w-full max-w-4xl mx-auto">
+                    <div class="w-full mx-auto ">
+                        <div class="relative h-[400px] w-[321px] md:min-w-[540px] px-4"> <!-- Adjusted height container -->
+                            <div *ngFor="let photo of weddingPhotos; let i = index"
                                  [ngStyle]="getPhotoStyle(i)"
-                                 class="object-cover transition-transform duration-300 group-hover:scale-105">
+                                 class="absolute rounded-sm shadow-sm transition-all duration-300 hover:z-50 hover:scale-105"
+                                 (click)="openImageModal(photo.thumbnailUrl)">
+                                <div class="relative group">
+                                    <img [src]="photo.thumbnailUrl"
+                                         [alt]="photo.title"
+                                         class="w-full h-full object-cover rounded-sm ">
+                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 
+                                               transition-colors duration-300"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

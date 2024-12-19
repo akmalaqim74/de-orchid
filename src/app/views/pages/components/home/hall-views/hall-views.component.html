@@ -1,14 +1,14 @@
-<div class="w-full relative h-[600px]"
+<div class="w-full relative h-[500px] md:h-[600px]"
 [ngStyle]="{'background-image': 'url(' + currentHallPhotos[currentHallIndex].thumbnailUrl + ')'}">
     <!-- Hall Background Carousel -->
     <div class="absolute inset-0 w-full h-full">
-        <div class="relative w-full h-full overflow-hidden m-auto">
+        <div class="relative w-full h-full overflow-hidden m-auto ">
           <!-- Primary Hall Image -->
           <div [@slideAnimation]="currentHallIndex">
             <img 
               #currentImage
               [src]="currentHallPhotos[currentHallIndex].thumbnailUrl" 
-              class="w-full object-contain"
+              class="w-full object-contain "
               [alt]="currentHallPhotos[currentHallIndex].title || 'Hall photo'"
               (load)="checkImageHeight(currentImage)">
           </div>

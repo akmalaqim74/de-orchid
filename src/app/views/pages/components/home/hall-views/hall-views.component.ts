@@ -64,10 +64,10 @@ export class HallViewsComponent {
       startingPrice: 5000,
       capacity: 500,
       photos: [
-        { thumbnailUrl: 'assets/gsHall.jpg', title: '' },
-        { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-        { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-        { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
+        { thumbnailUrl: 'assets/m3Mall(1).jpg', title: '' },
+        { thumbnailUrl: 'assets/m3Mall.jpg', title: '' },
+        { thumbnailUrl: 'assets/m3Mall(2).jpg', title: '' },
+        { thumbnailUrl: 'assets/m3Mall(3).jpg', title: '' },
         { thumbnailUrl: 'assets/gsHall.jpg', title: '' }
       ]
     },
@@ -102,11 +102,11 @@ export class HallViewsComponent {
       startingPrice: 5000,
       capacity: 400,
       photos: [
-        { thumbnailUrl: 'assets/cafe.jpg', title: '' },
-        { thumbnailUrl: 'assets/cafe2.jpg', title: '' },
-        { thumbnailUrl: 'assets/cafe3.jpg', title: '' },
-        { thumbnailUrl: 'assets/cafe4.jpg', title: '' },
-        { thumbnailUrl: 'assets/cafe5.jpg', title: '' }
+        { thumbnailUrl: 'assets/gsHall.jpg', title: '' },
+        { thumbnailUrl: 'assets/gsHall(4).jpg', title: '' },
+        { thumbnailUrl: 'assets/gsHall(3).jpg', title: '' },
+        { thumbnailUrl: 'assets/gsHall(2).jpg', title: '' },
+        { thumbnailUrl: 'assets/gsHall(1).jpg', title: '' }
       ]
     }
   ];
