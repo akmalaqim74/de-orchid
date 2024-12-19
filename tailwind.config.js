@@ -11,8 +11,12 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#BC9161',
-          hover: '#A67B4F'  // Darker shade for hover states
+          DEFAULT: '#ffffff',
+          hover: '#FFB74D'  // Darker shade for hover states
+        },
+        secondary: {
+          DEFAULT: '#000000',
+          hover: '#FFB74D'  // Lighter shade for hover states
         }
       }
     }

@@ -31,6 +31,7 @@ interface ConsultingServicesDataStructure {
   styleUrls: ['./catering-service.component.scss']
 })
 export class CateringServiceComponent implements OnInit {
+  backgroundImage = 'assets/background-flower-image.jpg';
   title = 'Consulting Services';
   currentServiceIndex = 0;
   currentPersonIndex = 0;
