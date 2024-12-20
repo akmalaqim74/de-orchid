@@ -29,5 +29,15 @@ export class HeaderComponent {
   toggleMobileDropdown() {
     this.isMobileDropdownOpen = !this.isMobileDropdownOpen;
   }
+  scrollToSection(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Close menus after clicking
+    this.isMenuOpen = false;
+    this.isDropdownOpen = false;
+    this.isMobileDropdownOpen = false;
+  }
 
 }

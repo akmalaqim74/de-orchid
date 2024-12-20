@@ -1,4 +1,4 @@
-<header class="bg-white shadow-md ">
+<header class="bg-[#f2eae4] shadow-md ">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <div class="flex justify-between items-center">
         <!-- Logo -->
@@ -8,9 +8,9 @@
   
         <!-- Desktop Navigation -->
         <div class="hidden md:flex space-x-4">
-          <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Services</a>
-          <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Hall</a>
-          <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Pake</a>
+          <a (click)="scrollToSection('services')" class="text-gray-600 hover:text-gray-900 font-medium cursor-pointer">Services</a>
+          <a (click)="scrollToSection('hall')" class="text-gray-600 hover:text-gray-900 font-medium cursor-pointer">Hall</a>
+          <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Pakej</a>
           <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Testimoni</a>
           <div class="relative inline-block text-left">
             <button 
@@ -71,8 +71,8 @@
         class="md:hidden" 
         [class.hidden]="!isMenuOpen">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Services</a>
-          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Hall</a>
+          <a (click)="scrollToSection('services')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Services</a>
+          <a (click)="scrollToSection('hall')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Hall</a>
           <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Pake</a>
           <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Testimoni</a>
           <button 

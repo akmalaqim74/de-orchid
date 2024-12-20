@@ -23,6 +23,7 @@ import { PakejModalComponent } from './views/pages/components/share-modal/pakej-
 import { HallViewsComponent } from './views/pages/components/home/hall-views/hall-views.component';
 import { CateringServiceComponent } from './views/pages/components/home/catering-service/catering-service.component';
 import { MainSectionComponent } from './views/pages/components/home/main-section/main-section.component';
+import { FooterComponent } from './views/pages/components/share-component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MainSectionComponent } from './views/pages/components/home/main-section
     PakejModalComponent,
     HallViewsComponent,
     CateringServiceComponent,
-    MainSectionComponent
+    MainSectionComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
