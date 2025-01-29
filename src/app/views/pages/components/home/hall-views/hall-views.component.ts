@@ -29,16 +29,6 @@ interface Photo {
           animate('300ms ease-out', style({ opacity: 0 }))
         ])
       ]),
-      trigger('slideAnimation', [
-        transition(':increment', [
-          style({ transform: 'translateX(100%)', opacity: 0 }),
-          animate('500ms ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
-        ]),
-        transition(':decrement', [
-          style({ transform: 'translateX(-100%)', opacity: 0 }),
-          animate('500ms ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
-        ])
-      ]),
       trigger('hallTransition', [
         transition(':enter', [
           style({ transform: 'translateY(20px)', opacity: 0 }),

@@ -54,6 +54,7 @@ export class CateringServiceComponent implements OnInit {
   get currentItems(): ServiceItem[] {
     return this.currentPerson?.items || [];
   }
+  personLength = this.currentService?.person?.length || 0;
 
   prevService() {
     if (!this.consultingServicesData?.consultingServicesData) return;

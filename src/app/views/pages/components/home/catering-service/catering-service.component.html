@@ -1,31 +1,38 @@
 <div class="bg-[#f2eae4] text-gray-900 pb-4">
   <div class="w-full mx-auto">
-    <div class="w-full flex justify-between items-center mb-8 sticky top-0 z-50 bg-[#f2eae4] p-4 md:pr-20 md:flex-row flex-col ">
+    <div
+      class="w-full flex justify-between items-center mb-8 sticky top-0 z-50 bg-[#f2eae4] p-4 md:pr-20 md:flex-row flex-col ">
       <div class="flex flex-col">
-        <h2 class="text-lg sm:text-2xl font-extrabold tracking-tight font-sans capitalize">
-          Service Provided: {{ currentService?.title }}
+        <h2 class="text-lg sm:text-2xl font-extrabold tracking-tight">
+          Service Disediakan  - {{ currentService?.title }}
         </h2>
       </div>
       <div class="flex space-x-2 sm:space-x-4">
-        <button (click)="prevService()" 
-        class="bg-white border-2 border-primary-hover text-secondary px-6 py-2 rounded-lg hover:bg-primary-hover hover:text-white transition-all duration-300"
-                  >
-          Prev
-        </button>
-        <button (click)="nextService()" 
-        class="bg-white border-2 border-primary-hover text-secondary px-6 py-2 rounded-lg hover:bg-primary-hover hover:text-white transition-all duration-300"
-        >
-          Next
-        </button>
+        <div>
+          <button (click)="prevService()"
+            class="bg-white border-2 border-primary-hover text-secondary px-6 py-2 rounded-lg hover:bg-primary-hover hover:text-white transition-all duration-300">
+            Prev
+          </button>
+
+        </div>
+        <div>
+          <button (click)="nextService()"
+            class="bg-white border-2 border-primary-hover text-secondary px-6 py-2 rounded-lg hover:bg-primary-hover hover:text-white transition-all duration-300">
+            Next
+          </button>
+        </div>
+
+
       </div>
     </div>
     <p class="text-lg mb-12 px-4">{{ currentPerson?.description }}</p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 px-4">
       <!-- Left Column -->
       <div class="space-y-8">
-        <div *ngFor="let item of currentItems | slice:0:2" 
-             class="bg-gray-800 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
-          <div class="bg-primary-hover rounded-full w-12 h-12 flex items-center justify-center mb-4 transform transition-transform hover:rotate-12">
+        <div *ngFor="let item of currentItems | slice:0:2"
+          class="bg-gray-800 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
+          <div
+            class="bg-primary-hover rounded-full w-12 h-12 flex items-center justify-center mb-4 transform transition-transform hover:rotate-12">
             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
             </svg>
@@ -34,36 +41,44 @@
           <p class="text-gray-300 leading-relaxed">{{ item.description }}</p>
         </div>
       </div>
-    
+
       <!-- Center Image Column with Navigation Buttons -->
       <div class="relative flex items-center justify-center">
-        <button (click)="prevPerson()" 
-                class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-secondary hover:text-primary font-bold py-2 px-3 rounded-l m-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <div class="flex flex-col items-center w-[360px] font-bold text-base sm:text-2xl mt-1 hover:text-xl sm:hover:text-4xl transform transition-all duration-300 hover:scale-105">
-          <p class="text-secondary text-center pl-10">{{ currentPerson?.name }}</p>
-          <img [src]="currentPerson?.image" 
-             alt="{{ currentPerson?.name }}" 
-             class="w-full h-full object-cover ">
+        <div *ngIf="currentPersonIndex > 0">
+          <button (click)="prevPerson()"
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-secondary hover:text-primary font-bold py-2 px-3 rounded-l m-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
         </div>
-        
-             
-        <button (click)="nextPerson()" 
-                class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-secondary hover:text-primary font-bold py-2 px-3 rounded-r m-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+
+
+        <div
+          class="flex flex-col items-center w-[360px] font-bold text-base sm:text-2xl mt-1 hover:text-xl sm:hover:text-4xl transform transition-all duration-300 hover:scale-105">
+          <p class="text-secondary text-center pl-10">{{ currentPerson?.name }}</p>
+          <img [src]="currentPerson?.image" alt="{{ currentPerson?.name }}" class="w-full h-full object-cover ">
+        </div>
+
+        <div *ngIf="personLength > 0 && currentPersonIndex < personLength - 1">
+          <button (click)="nextPerson()"
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-secondary hover:text-primary font-bold py-2 px-3 rounded-r m-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
       </div>
-    
+
       <!-- Right Column -->
       <div class="space-y-8">
-        <div *ngFor="let item of currentItems | slice:2" 
-             class="bg-gray-800 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
-          <div class="bg-primary-hover rounded-full w-12 h-12 flex items-center justify-center mb-4 transform transition-transform hover:rotate-12">
+        <div *ngFor="let item of currentItems | slice:2"
+          class="bg-gray-800 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
+          <div
+            class="bg-primary-hover rounded-full w-12 h-12 flex items-center justify-center mb-4 transform transition-transform hover:rotate-12">
             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
             </svg>
