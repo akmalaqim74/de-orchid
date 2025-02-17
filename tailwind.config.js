@@ -18,6 +18,11 @@ module.exports = {
           DEFAULT: '#000000',
           hover: '#FFB74D'  // Lighter shade for hover states
         }
+      },
+      fontFamily: {
+        script: ['Great Vibes', 'cursive'],
+        // or
+        dancingscript: ['Dancing Script', 'cursive']
       }
     }
   },

@@ -1,101 +1,110 @@
 <header class="bg-[#f2eae4] shadow-md ">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="flex justify-between items-center">
-        <!-- Logo -->
-        <a href="#" class="flex items-center">
-          <img src="assets/logo/De-Orchid-logo.png" alt="Pchid Logo" class="h-8 w-auto">
-        </a>
-  
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex space-x-4">
-          <a (click)="scrollToSection('services')" class="text-gray-600 hover:text-gray-900 font-medium cursor-pointer">Services</a>
-          <a (click)="scrollToSection('hall')" class="text-gray-600 hover:text-gray-900 font-medium cursor-pointer">Hall</a>
-          <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Pakej</a>
-          <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Testimoni</a>
-          <div class="relative inline-block text-left">
-            <button 
-              (click)="toggleDropdown()" 
-              (mouseenter)="showDropdown()" 
-              class="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center">
-              Others
-              <svg 
-                class="w-4 h-4 ml-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <!-- Dropdown Menu -->
-            <div 
-              *ngIf="isDropdownOpen" 
-              (mouseleave)="hideDropdown()"
-              class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-              <div class="py-1">
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">About Us</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">FAQ</a>
-              </div>
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="flex items-center">
+        <img src="assets/logo/De-Orchid-logo.png" alt="Pchid Logo" class="h-8 w-auto">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex space-x-4">
+        <div class="relative inline-block text-left">
+          <button (click)="toggleServicesDropdown()" (mouseenter)="showServicesDropdown()"
+            class="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center">
+            Services
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <!-- Services Dropdown Menu -->
+          <div *ngIf="isServicesDropdownOpen" (mouseleave)="hideServicesDropdown()"
+            class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div class="py-1">
+              <a routerLink="/faradana-catering"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Faradana Catering</a>
+              
             </div>
           </div>
         </div>
-  
-        <!-- Mobile Menu Button -->
-        <button 
-          (click)="toggleMenu()" 
-          class="md:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
-          [attr.aria-expanded]="isMenuOpen">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            class="h-6 w-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-            [class.hidden]="isMenuOpen">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            class="h-6 w-6" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-            [class.hidden]="!isMenuOpen">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-  
-      <!-- Mobile Navigation -->
-      <div 
-        class="md:hidden" 
-        [class.hidden]="!isMenuOpen">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-          <a (click)="scrollToSection('services')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Services</a>
-          <a (click)="scrollToSection('hall')" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Hall</a>
-          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Pake</a>
-          <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Testimoni</a>
-          <button 
-            (click)="toggleMobileDropdown()" 
-            class="flex justify-between items-center w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+        <a (click)="scrollToSection('hall')"
+          class="text-gray-600 hover:text-gray-900 font-medium cursor-pointer">Hall</a>
+        <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Pakej</a>
+        <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Testimoni</a>
+        <div class="relative inline-block text-left">
+          <button (click)="toggleDropdown()" (mouseenter)="showDropdown()"
+            class="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center">
             Others
-            <svg 
-                class="w-4 h-4 ml-1" 
-                [class.rotate-180]="isMobileDropdownOpen"
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
-            </button>
-            <div 
-            *ngIf="isMobileDropdownOpen" 
-            class="pl-4">
-                <a href="#" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">About Us</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Contact</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">FAQ</a>
+          </button>
+          <!-- Dropdown Menu -->
+          <div *ngIf="isDropdownOpen" (mouseleave)="hideDropdown()"
+            class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div class="py-1">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">About Us</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">FAQ</a>
             </div>
+          </div>
         </div>
       </div>
-    </nav>
-  </header>
+
+      <!-- Mobile Menu Button -->
+      <button (click)="toggleMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
+        [attr.aria-expanded]="isMenuOpen">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          [class.hidden]="isMenuOpen">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          [class.hidden]="!isMenuOpen">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden" [class.hidden]="!isMenuOpen">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <button (click)="toggleServicesDropdown()"
+          class="flex justify-between items-center w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+          Services
+          <svg class="w-4 h-4 ml-1" [class.rotate-180]="isServicesDropdownOpen" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div *ngIf="isServicesDropdownOpen" class="pl-4">
+          <a routerLink="/faradana-catering"
+            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Faradana Catering</a>
+          
+            
+        </div>
+        <a (click)="scrollToSection('hall')"
+          class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Hall</a>
+        <a href="#"
+          class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Pake</a>
+        <a href="#"
+          class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Testimoni</a>
+        <button (click)="toggleMobileDropdown()"
+          class="flex justify-between items-center w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+          Others
+          <svg class="w-4 h-4 ml-1" [class.rotate-180]="isMobileDropdownOpen" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div *ngIf="isMobileDropdownOpen" class="pl-4">
+          <a href="#"
+            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">About
+            Us</a>
+          <a href="#"
+            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Contact</a>
+          <a href="#"
+            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

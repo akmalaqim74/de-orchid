@@ -9,6 +9,7 @@ export class HeaderComponent {
   isMenuOpen = false;
   isDropdownOpen = false;
   isMobileDropdownOpen = false;
+  isServicesDropdownOpen = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -38,6 +39,17 @@ export class HeaderComponent {
     this.isMenuOpen = false;
     this.isDropdownOpen = false;
     this.isMobileDropdownOpen = false;
+  }
+  showServicesDropdown() {
+    this.isServicesDropdownOpen = true;
+  }
+
+  hideServicesDropdown() {
+    this.isServicesDropdownOpen = false;
+  }
+
+  toggleServicesDropdown() {
+    this.isServicesDropdownOpen = !this.isServicesDropdownOpen;
   }
 
 }
