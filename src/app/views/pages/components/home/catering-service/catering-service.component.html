@@ -1,13 +1,17 @@
 <div class="bg-[#f2eae4] text-gray-900 pb-4">
   <div class="w-full mx-auto">
-    <div
-      class="w-full flex justify-between items-center mb-8 sticky top-0 z-50 bg-[#f2eae4] p-4 md:pr-20 md:flex-row flex-col ">
-      <div class="flex flex-col">
-        <h2 class="text-lg sm:text-2xl font-extrabold tracking-tight">
-          Service Disediakan  - {{ currentService?.title }}
-        </h2>
+    <div class="w-full mb-8 sticky top-0 z-50 bg-[#f2eae4] m-auto pt-4">
+      <h2 class="text-lg sm:text-2xl font-extrabold tracking-tight text-center">
+        Service Disediakan <br> {{ currentService?.title }}
+      </h2>
+      <div class="m-auto">
+
+
+
+
+
       </div>
-      <div class="flex space-x-2 sm:space-x-4">
+      <!-- <div class="flex space-x-2 sm:space-x-4">
         <div>
           <button (click)="prevService()"
             class="bg-white border-2 border-primary-hover text-secondary px-6 py-2 rounded-lg hover:bg-primary-hover hover:text-white transition-all duration-300">
@@ -23,67 +27,84 @@
         </div>
 
 
-      </div>
+      </div> -->
     </div>
-    <p class="text-lg mb-12 px-4">{{ currentPerson?.description }}</p>
+    <div class="m-auto">
+      <p class="text-lg mb-12 px-4 text-center">{{ currentPerson?.description }}</p>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 px-4">
       <!-- Left Column -->
       <div class="space-y-8">
         <div *ngFor="let item of currentItems | slice:0:2"
-          class="bg-gray-800 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
-          <div
-            class="bg-primary-hover rounded-full w-12 h-12 flex items-center justify-center mb-4 transform transition-transform hover:rotate-12">
-            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
-            </svg>
+          class="bg-[#aa8155] rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
+          <div class="flex gap-4 items-center mb-4 border border-[#7a521a]">
+            <div
+              class="rounded-full w-12 h-12 flex items-center justify-center transform transition-transform hover:rotate-12">
+              <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-col">
+                <span class="text-xl font-bold text-white text-center text-shadow-md text-shadow-green-500">{{
+                  item.title }}</span>
+                <svg class="w-full h-2" viewBox="0 0 100 10">
+                  <path d="M0,5 C10,2 20,8 30,5 C40,2 50,8 60,5 C70,2 80,8 90,5 C95,3.5 100,6.5 100,5" fill="none"
+                    stroke="white" stroke-width="1" />
+                </svg>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-white">{{ item.title }}</h3>
           <p class="text-gray-300 leading-relaxed">{{ item.description }}</p>
         </div>
       </div>
 
       <!-- Center Image Column with Navigation Buttons -->
-      <div class="relative flex items-center justify-center">
-        <div *ngIf="currentPersonIndex > 0">
-          <button (click)="prevPerson()"
-            class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-secondary hover:text-primary font-bold py-2 px-3 rounded-l m-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        </div>
-
+      <div class="relative flex justify-center items-center">
+        <button (click)="prevService()"
+          class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white border-2 border-primary-hover text-secondary hover:bg-primary-hover hover:text-white transition-all duration-300 font-bold py-2 px-6 rounded-lg m-2 z-10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
 
         <div
-          class="flex flex-col items-center w-[360px] font-bold text-base sm:text-2xl mt-1 hover:text-xl sm:hover:text-4xl transform transition-all duration-300 hover:scale-105">
+          class="flex flex-col items-center w-[320px] font-bold text-base sm:text-2xl mt-1 hover:text-xl sm:hover:text-4xl transform transition-all duration-300 hover:scale-105">
           <p class="text-secondary text-center pl-10">{{ currentPerson?.name }}</p>
-          <img [src]="currentPerson?.image" alt="{{ currentPerson?.name }}" class="w-full h-full object-cover ">
+          <img [src]="currentPerson?.image" [alt]="currentPerson?.name" class="w-full h-full object-contain">
         </div>
 
-        <div *ngIf="personLength > 0 && currentPersonIndex < personLength - 1">
-          <button (click)="nextPerson()"
-            class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-secondary hover:text-primary font-bold py-2 px-3 rounded-r m-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
+        <button (click)="nextService()"
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white border-2 border-primary-hover text-secondary hover:bg-primary-hover hover:text-white transition-all duration-300 font-bold py-2 px-6 rounded-lg m-2 z-10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
 
       <!-- Right Column -->
       <div class="space-y-8">
         <div *ngFor="let item of currentItems | slice:2"
-          class="bg-gray-800 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
-          <div
-            class="bg-primary-hover rounded-full w-12 h-12 flex items-center justify-center mb-4 transform transition-transform hover:rotate-12">
-            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
-            </svg>
+          class="bg-[#aa8155] rounded-lg p-6 transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-700 h-[220px]">
+          <div class="flex gap-4 items-center mb-4 border border-[#7a521a]">
+            <div
+              class="rounded-full w-12 h-12 flex items-center justify-center transform transition-transform hover:rotate-12">
+              <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon"></path>
+              </svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-col">
+                <span class="text-xl font-bold text-white text-center text-shadow-md text-shadow-green-500">{{
+                  item.title }}</span>
+                <svg class="w-full h-2" viewBox="0 0 100 10">
+                  <path d="M0,5 C10,2 20,8 30,5 C40,2 50,8 60,5 C70,2 80,8 90,5 C95,3.5 100,6.5 100,5" fill="none"
+                    stroke="white" stroke-width="1" />
+                </svg>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-white">{{ item.title }}</h3>
           <p class="text-gray-300 leading-relaxed">{{ item.description }}</p>
         </div>
       </div>
