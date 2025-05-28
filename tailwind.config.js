@@ -10,6 +10,12 @@ module.exports = {
   theme:{
     extend: {
       colors: {
+         'brand-base': '#f8f0e9',      // Soft beige background
+        'brand-text': '#5d5047',     // Darker stone for text
+        'brand-primary': '#aa8155',  // Muted gold accent
+        'brand-secondary': '#8c6b4f',// Darker gold/brown for headings
+        'brand-accent': '#c09060',   // Brighter gold for interactive elements
+        'brand-light-accent': '#d4bca9', // Very light accent for 
         primary: {
           DEFAULT: '#ffffff',
           hover: '#FFB74D'  // Darker shade for hover states
@@ -22,7 +28,9 @@ module.exports = {
       fontFamily: {
         script: ['Great Vibes', 'cursive'],
         // or
-        dancingscript: ['Dancing Script', 'cursive']
+        dancingscript: ['Dancing Script', 'cursive'],
+        serif: ['Playfair Display', 'serif'],
+        sans: ['Lato', 'sans-serif'],
       }
     }
   },
