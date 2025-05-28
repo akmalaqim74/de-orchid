@@ -1,0 +1,121 @@
+// Hall Views Component Styles
+
+// Hide scrollbar for thumbnail strip
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+  
+  &::-webkit-scrollbar {
+    display: none;           /* Chrome, Safari and Opera */
+  }
+}
+
+// Focus styles for accessibility
+.focusable-visible {
+  &:focus-visible {
+    outline: 2px solid #B08D57;
+    outline-offset: 2px;
+  }
+}
+
+.focusable-text {
+  &:focus-visible {
+    outline: 1px solid #B08D57;
+    outline-offset: 1px;
+  }
+}
+
+.focusable-card {
+  &:focus-visible {
+    outline: 2px solid #B08D57;
+    outline-offset: 4px;
+  }
+}
+
+// Animation for feature items when they enter
+.feature-item {
+  animation: slideInUp 0.35s ease-out forwards;
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Smooth transitions for hall card changes
+.hall-card {
+  will-change: transform, opacity;
+}
+
+// Enhanced hover effects for navigation buttons
+.nav-button {
+  &:hover:not(:disabled) {
+    transform: scale(1.1);
+  }
+  
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+}
+
+// Tab button specific styles
+.tab-button {
+  position: relative;
+  
+  &:hover:not([aria-pressed="true"]) {
+    transform: translateY(-1px);
+  }
+}
+
+// Image loading transition
+.hall-image {
+  transition: opacity 0.3s ease-in-out;
+}
+
+// Price display styling
+.price-display {
+  .price-number {
+    background: linear-gradient(135deg, #B08D57 0%, #8c6d42 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .hall-views-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .feature-item {
+    font-size: 0.75rem;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .nav-button {
+    border: 2px solid currentColor;
+  }
+  
+  .tab-button {
+    border: 1px solid currentColor;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .hall-card,
+  .nav-button,
+  .tab-button,
+  .feature-item {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
