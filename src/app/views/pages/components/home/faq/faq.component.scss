@@ -1,0 +1,441 @@
+// faq.component.scss
+
+// Import Google Fonts for premium wedding typography
+
+// Wedding Color Palette
+$primary-gold: #B08D57;
+$primary-dark-gold: #8c6d42;
+$primary-light-gold: #C4975C;
+$cream-bg: #f8f2ec;
+$warm-cream: #faf7f2;
+$soft-cream: #f5ede3;
+$text-primary: #1F2937;
+$text-secondary: #4B5563;
+$text-muted: #6B7280;
+
+// Premium Typography
+.faq-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+// Enhanced Search Input
+.search-input {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+
+  &::placeholder {
+    font-style: italic;
+    color: #9CA3AF;
+  }
+
+  &:focus {
+    &::placeholder {
+      opacity: 0.7;
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+// Category Button Enhancements
+.category-btn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &.active {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, white, transparent);
+      border-radius: 2px;
+    }
+  }
+}
+
+// FAQ Item Enhancements
+.faq-item {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-gold, $primary-light-gold, $primary-gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  &:hover::before,
+  &.expanded::before {
+    transform: scaleX(1);
+  }
+
+  // Floating effect on hover
+  &:hover {
+    transform: translateY(-8px) scale(1.01);
+    
+    .question-content h3 {
+      color: $primary-dark-gold;
+    }
+  }
+
+  &.expanded {
+    transform: translateY(-4px);
+    box-shadow: 
+      0 20px 40px rgba($primary-gold, 0.15),
+      0 8px 16px rgba($primary-gold, 0.1);
+  }
+}
+
+// Question Header Styling
+.question-content {
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.4;
+    transition: all 0.3s ease;
+
+    // Highlight search terms
+    ::ng-deep mark {
+      background: linear-gradient(135deg, rgba($primary-light-gold, 0.4), rgba($primary-gold, 0.3));
+      color: $primary-dark-gold;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-weight: 700;
+      box-shadow: 0 2px 4px rgba($primary-gold, 0.2);
+    }
+  }
+}
+
+// Category Badge Styling
+.category-badge {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+}
+
+// Answer Content Styling
+.answer-content {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 1.8;
+  color: $text-secondary;
+
+  // Enhanced formatting for answer content
+  ::ng-deep {
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    strong, b {
+      color: $primary-dark-gold;
+      font-weight: 700;
+    }
+
+    ul, ol {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+
+      li {
+        margin-bottom: 0.75rem;
+        position: relative;
+        font-size: 1.05rem;
+        line-height: 1.7;
+
+        &::marker {
+          color: $primary-gold;
+          font-weight: bold;
+        }
+
+        // Custom bullet points
+        &::before {
+          content: '→';
+          color: $primary-gold;
+          font-weight: bold;
+          position: absolute;
+          left: -1.5rem;
+        }
+      }
+    }
+
+    // Remove default list styling and use custom
+    ul li {
+      list-style: none;
+    }
+  }
+}
+
+// Expand/Collapse Icon Animation
+.expand-icon {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: scale(1.15) rotate(15deg);
+    box-shadow: 0 8px 25px rgba($primary-gold, 0.4);
+  }
+}
+
+// Contact CTA Styling
+.contact-cta {
+  background: linear-gradient(135deg, 
+    rgba($primary-gold, 0.05) 0%, 
+    rgba($primary-light-gold, 0.08) 50%, 
+    rgba($primary-gold, 0.05) 100%);
+  border: 2px solid rgba($primary-gold, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, 
+      rgba($primary-gold, 0.1) 0%, 
+      rgba($primary-light-gold, 0.15) 50%, 
+      rgba($primary-gold, 0.1) 100%);
+    border-color: rgba($primary-gold, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+// WhatsApp Button
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// No Results State
+.no-results {
+  .bounce-icon {
+    animation: gentleBounce 2s infinite;
+  }
+}
+
+@keyframes gentleBounce {
+  0%, 100% { 
+    transform: translateY(0) scale(1); 
+  }
+  50% { 
+    transform: translateY(-10px) scale(1.05); 
+  }
+}
+
+// Loading States
+.loading-state {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($primary-gold, 0.1),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+// Responsive Typography
+@media (max-width: 768px) {
+  .faq-container {
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .question-content h3 {
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+
+    .answer-content {
+      font-size: 1rem;
+
+      ::ng-deep {
+        p {
+          font-size: 1rem;
+          line-height: 1.7;
+        }
+
+        li {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .faq-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .faq-item {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .faq-item {
+    border: 2px solid currentColor;
+  }
+
+  .category-btn {
+    border-width: 2px;
+  }
+
+  .search-input {
+    border-width: 2px;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Print styles
+@media print {
+  .faq-container {
+    background: white !important;
+    
+    .search-filter-bar,
+    .faq-controls,
+    .contact-cta,
+    .whatsapp-btn {
+      display: none !important;
+    }
+
+    .faq-item {
+      box-shadow: none !important;
+      border: 1px solid #ccc !important;
+      break-inside: avoid;
+      margin-bottom: 1rem;
+    }
+
+    .faq-answer {
+      max-height: none !important;
+      overflow: visible !important;
+    }
+  }
+}
+
+// Focus styles for accessibility
+.focus-visible {
+  &:focus-visible {
+    outline: 3px solid $primary-gold;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($primary-gold, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, $primary-gold, $primary-light-gold);
+  border-radius: 4px;
+
+  &:hover {
+    background: linear-gradient(to bottom, $primary-dark-gold, $primary-gold);
+  }
+}
+
+// Selection styling
+::selection {
+  background: rgba($primary-gold, 0.3);
+  color: $primary-dark-gold;
+}
+
+::-moz-selection {
+  background: rgba($primary-gold, 0.3);
+  color: $primary-dark-gold;
+}

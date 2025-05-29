@@ -26,77 +26,87 @@
           [attr.aria-pressed]="selectedHall === hall.id"
           [attr.aria-label]="'View ' + hall.name">
           {{ hall.name }}
-           <span *ngIf="selectedHall === hall.id" 
-                 class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-3/5 h-[3px] bg-[#B08D57] rounded-full transition-all duration-300"
-                 [@fadeAnimation]></span>
+          <span *ngIf="selectedHall === hall.id" 
+                class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-3/5 h-[3px] bg-[#B08D57] rounded-full transition-all duration-300"
+                [@fadeAnimation]></span>
         </button>
       </div>
     </div>
 
     <!-- Main Content Card for the Selected Hall -->
-    <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 ease-in-out hall-card" 
-         [@hallTransition]="currentHall.id"> <!-- Ensure animation triggers on ID change -->
+    <div *ngIf="currentHall" 
+         class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-500 ease-in-out hall-card" 
+         [@hallTransition]="currentHall.id">
       <div class="grid lg:grid-cols-2 gap-0">
 
         <!-- Image Carousel Section -->
         <div class="relative bg-[#f8f2ec] order-1 lg:order-1">
-          <div class="aspect-w-16 aspect-h-10 xl:aspect-h-11" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+          <div class="aspect-w-16 aspect-h-10 xl:aspect-h-11" 
+               (touchstart)="onTouchStart($event)" 
+               (touchend)="onTouchEnd($event)">
             <div class="relative w-full h-full overflow-hidden rounded-tl-2xl rounded-tr-2xl lg:rounded-tr-none lg:rounded-bl-2xl">
-              <div *ngIf="isImageLoading" class="absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-sm z-20">
-                <div class="w-10 h-10 border-4 border-[#B08D57] border-t-transparent rounded-full animate-spin"></div>
+              
+              <!-- Minimal loading spinner - only shows when actually loading -->
+              <div *ngIf="isImageLoading" 
+                   class="absolute inset-0 flex items-center justify-center bg-white/40 backdrop-blur-sm z-20">
+                <div class="w-8 h-8 border-3 border-[#B08D57] border-t-transparent rounded-full animate-spin"></div>
               </div>
 
+              <!-- Optimized image loading -->
               <img
-                #currentImage
-                [src]="currentHallPhotos[currentHallIndex] && currentHallPhotos[currentHallIndex].thumbnailUrl || 'assets/images/placeholder-hall-image.png'"
-                class="w-full h-full object-cover transition-opacity duration-300"
+                [src]="getCurrentImageUrl()"
+                class="w-full h-full object-cover transition-opacity duration-200"
                 [class.opacity-0]="isImageLoading"
                 [class.opacity-100]="!isImageLoading"
-                [alt]="currentHallPhotos[currentHallIndex].title || currentHall.name + ' photo'"
+                [alt]="getCurrentImageAlt()"
                 (load)="imageLoaded()"
-                (error)="imageError()">
+                (error)="imageError()"
+                loading="eager">
 
+              <!-- Previous button -->
               <button
                 *ngIf="currentHallPhotos.length > 1"
                 (click)="prevHallPhoto()"
                 class="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-white/70 backdrop-blur-sm rounded-full p-2 text-[#6D4C41] hover:bg-[#B08D57] hover:text-white transition-all duration-300 shadow-md group nav-button focusable-visible z-10"
-                [disabled]="currentHallIndex === 0 && currentHallPhotos.length > 0" 
-                [class.opacity-40]="currentHallIndex === 0  && currentHallPhotos.length > 0"
-                [class.cursor-not-allowed]="currentHallIndex === 0 && currentHallPhotos.length > 0"
                 aria-label="Previous hall photo">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
 
+              <!-- Next button -->
               <button
                 *ngIf="currentHallPhotos.length > 1"
                 (click)="nextHallPhoto()"
                 class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-white/70 backdrop-blur-sm rounded-full p-2 text-[#6D4C41] hover:bg-[#B08D57] hover:text-white transition-all duration-300 shadow-md group nav-button focusable-visible z-10"
-                [disabled]="currentHallIndex >= currentHallPhotos.length - 1"
-                [class.opacity-40]="currentHallIndex >= currentHallPhotos.length - 1"
-                [class.cursor-not-allowed]="currentHallIndex >= currentHallPhotos.length - 1"
                 aria-label="Next hall photo">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
 
-              <div *ngIf="currentHallPhotos.length > 1" class="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 bg-black/50 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium z-10">
+              <!-- Image counter -->
+              <div *ngIf="currentHallPhotos.length > 1" 
+                   class="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 bg-black/50 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-medium z-10">
                 {{ currentHallIndex + 1 }} / {{ currentHallPhotos.length }}
               </div>
             </div>
           </div>
 
-          <div *ngIf="currentHallPhotos.length > 1" class="p-3 sm:p-4 bg-[#f8f2ec] border-t border-[#e0d8d0]/70 thumbnail-strip">
-            <div class="flex gap-2 sm:gap-2.5 overflow-x-auto pb-1 hide-scrollbar"> <!-- Added hide-scrollbar utility -->
+          <!-- Thumbnail strip -->
+          <div *ngIf="currentHallPhotos.length > 1" 
+               class="p-3 sm:p-4 bg-[#f8f2ec] border-t border-[#e0d8d0]/70 thumbnail-strip">
+            <div class="flex gap-2 sm:gap-2.5 overflow-x-auto pb-1 hide-scrollbar">
               <button
                 *ngFor="let photo of currentHallPhotos; let i = index; trackBy: trackByPhotoUrl"
                 (click)="goToHallSlide(i)"
                 class="flex-shrink-0 w-14 h-11 sm:w-16 sm:h-12 md:w-20 md:h-14 rounded-md overflow-hidden border-2 transition-all duration-300 focusable-visible group"
                 [ngClass]="i === currentHallIndex ? 'border-[#B08D57] scale-105 shadow-lg ring-2 ring-[#B08D57]/30' : 'border-transparent opacity-60 hover:opacity-90 hover:border-[#B08D57]/50'"
                 [attr.aria-label]="'Go to hall slide ' + (i + 1) + (photo.title ? ' of ' + photo.title : '')">
-                <img [src]="photo.thumbnailUrl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" [alt]="'Thumbnail ' + (i + 1) + (photo.title ? ' - ' + photo.title : '')">
+                <img [src]="photo.thumbnailUrl" 
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                     [alt]="'Thumbnail ' + (i + 1) + (photo.title ? ' - ' + photo.title : '')"
+                     loading="lazy">
               </button>
             </div>
           </div>
@@ -107,21 +117,24 @@
           <div class="space-y-4 sm:space-y-5 mb-6 sm:mb-8 flex-grow">
             <div class="space-y-1.5 sm:space-y-2">
               <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#6D4C41] leading-tight">{{ currentHall.name }}</h2>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#6D4C41] leading-tight">
+                  {{ currentHall.name }}
+                </h2>
                 <span class="bg-[#B08D57]/10 text-[#B08D57] px-2.5 py-1 rounded-full text-xs font-semibold tracking-wide">
                   Up to {{ currentHall.capacity }} Guests
                 </span>
               </div>
               <div class="flex items-baseline gap-1.5 price-display">
-                 <span class="text-[#A1887F] text-xs sm:text-sm">starting from</span>
+                <span class="text-[#A1887F] text-xs sm:text-sm">starting from</span>
                 <span class="text-2xl sm:text-3xl font-serif font-bold text-[#B08D57] price-number">
-                   {{ getFormattedPrice(currentHall.startingPrice) }}
+                  {{ getFormattedPrice(currentHall.startingPrice) }}
                 </span>
-               
               </div>
             </div>
 
-            <p class="text-[#705c52] text-sm sm:text-base leading-relaxed md:leading-loose">{{ currentHall.description }}</p>
+            <p class="text-[#705c52] text-sm sm:text-base leading-relaxed md:leading-loose">
+              {{ currentHall.description }}
+            </p>
 
             <div class="space-y-3 pt-2 sm:pt-3">
               <h3 class="text-lg sm:text-xl font-serif font-semibold text-[#6D4C41] flex items-center gap-2">
@@ -132,7 +145,7 @@
               </h3>
               <ul class="space-y-2 pl-1 feature-list features-list" [@staggerAnimation]>
                 <li
-                  *ngFor="let feature of currentHall.features | slice:0:visibleFeaturesCount; let i = index; trackBy: trackByIndex"
+                  *ngFor="let feature of getVisibleFeatures(); let i = index; trackBy: trackByIndex"
                   class="flex items-start gap-2.5 text-[#705c52] feature-item py-0.5 rounded focusable-text"
                   [style.animation-delay.ms]="i * 60">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-[#B08D57] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
@@ -141,14 +154,14 @@
                   <span class="text-xs sm:text-sm">{{ feature }}</span>
                 </li>
               </ul>
-              <button *ngIf="currentHall && currentHall.features && currentHall.features.length > visibleFeaturesCount" 
+              <!-- <button *ngIf="hasMoreFeatures()" 
                       (click)="openFeaturesModal(currentHall)" 
                       class="text-xs sm:text-sm text-[#B08D57] hover:text-[#8c6d42] font-semibold flex items-center gap-1 mt-2 focusable-visible p-1 -ml-1 rounded">
                 View All Features
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
-              </button>
+              </button> -->
             </div>
           </div>
 
@@ -175,44 +188,53 @@
       </div>
     </div>
 
-    <!-- "Why Choose Us?" Section - Styling refined -->
-    <div class="mt-16 md:mt-20">
-        <div class="text-center mb-10 md:mb-12">
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-semibold text-[#6D4C41] mb-2">Why Choose Our Venues?</h2>
-            <p class="text-base sm:text-lg text-[#A1887F]">Crafting your perfect day with expertise, quality, and exceptional value.</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-            <div class="bg-white p-6 py-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 hall-card focusable-card">
-                <div class="w-14 h-14 bg-[#B08D57]/10 rounded-full flex items-center justify-center mx-auto mb-5 ring-4 ring-[#B08D57]/20 transition-all duration-300 group-hover:ring-[#B08D57]/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#B08D57]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-serif font-semibold text-[#6D4C41] mb-2">Expert Event Planning</h3>
-                <p class="text-[#795548] text-sm leading-relaxed">Our dedicated team helps meticulously plan every cherished detail of your event.</p>
-            </div>
-            
-            <div class="bg-white p-6 py-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 hall-card focusable-card">
-                <div class="w-14 h-14 bg-[#B08D57]/10 rounded-full flex items-center justify-center mx-auto mb-5 ring-4 ring-[#B08D57]/20 transition-all duration-300 group-hover:ring-[#B08D57]/30">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#B08D57]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-serif font-semibold text-[#6D4C41] mb-2">Uncompromising Quality</h3>
-                <p class="text-[#795548] text-sm leading-relaxed">Premium facilities complemented by our top-notch, heartfelt service standards.</p>
-            </div>
-            
-            <div class="bg-white p-6 py-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 hall-card focusable-card">
-                <div class="w-14 h-14 bg-[#B08D57]/10 rounded-full flex items-center justify-center mx-auto mb-5 ring-4 ring-[#B08D57]/20 transition-all duration-300 group-hover:ring-[#B08D57]/30">
-                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#B08D57]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M17.657 18.657A8 8 0 0112 20a8 8 0 01-5.657-2.343m0 0A8 8 0 0012 4a8 8 0 00-5.657 2.343m11.314 0a8 8 0 01-5.657 2.343m5.657-2.343h0z" />
-                    </svg>
-                </div>
-                <h3 class="text-xl font-serif font-semibold text-[#6D4C41] mb-2">Exceptional Value</h3>
-                <p class="text-[#795548] text-sm leading-relaxed">Competitive pricing with flexible packages designed to fit your dream celebration.</p>
-            </div>
-        </div>
+    <!-- Fallback message when no hall is selected -->
+    <div *ngIf="!currentHall" class="text-center py-16">
+      <p class="text-[#A1887F] text-lg">Please select a hall to view details.</p>
     </div>
 
+    <!-- "Why Choose Us?" Section -->
+    <div class="mt-16 md:mt-20">
+      <div class="text-center mb-10 md:mb-12">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-semibold text-[#6D4C41] mb-2">Why Choose Our Venues?</h2>
+        <p class="text-base sm:text-lg text-[#A1887F]">Crafting your perfect day with expertise, quality, and exceptional value.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="bg-white p-6 py-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 hall-card focusable-card">
+          <div class="w-14 h-14 bg-[#B08D57]/10 rounded-full flex items-center justify-center mx-auto mb-5 ring-4 ring-[#B08D57]/20 transition-all duration-300 group-hover:ring-[#B08D57]/30">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#B08D57]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-semibold text-[#6D4C41] mb-2">Expert Event Planning</h3>
+          <p class="text-[#795548] text-sm leading-relaxed">Our dedicated team helps meticulously plan every cherished detail of your event.</p>
+        </div>
+        
+        <div class="bg-white p-6 py-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 hall-card focusable-card">
+          <div class="w-14 h-14 bg-[#B08D57]/10 rounded-full flex items-center justify-center mx-auto mb-5 ring-4 ring-[#B08D57]/20 transition-all duration-300 group-hover:ring-[#B08D57]/30">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#B08D57]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-semibold text-[#6D4C41] mb-2">Uncompromising Quality</h3>
+          <p class="text-[#795548] text-sm leading-relaxed">Premium facilities complemented by our top-notch, heartfelt service standards.</p>
+        </div>
+        
+        <div class="bg-white p-6 py-8 rounded-xl shadow-lg text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 hall-card focusable-card">
+          <div class="w-14 h-14 bg-[#B08D57]/10 rounded-full flex items-center justify-center mx-auto mb-5 ring-4 ring-[#B08D57]/20 transition-all duration-300 group-hover:ring-[#B08D57]/30">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#B08D57]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M17.657 18.657A8 8 0 0112 20a8 8 0 01-5.657-2.343m0 0A8 8 0 0112 4a8 8 0 00-5.657 2.343m11.314 0a8 8 0 01-5.657 2.343m5.657-2.343h0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-serif font-semibold text-[#6D4C41] mb-2">Exceptional Value</h3>
+          <p class="text-[#795548] text-sm leading-relaxed">Competitive pricing with flexible packages designed to fit your dream celebration.</p>
+        </div>
+      </div>
+    </div>
+<app-contact-us 
+      [showContactModal]="showContactModal"
+      [businessInfo]="contactBusinessInfo"
+      (closeModal)="onCloseContactModal()">
+    </app-contact-us>
   </div>
 </div>
