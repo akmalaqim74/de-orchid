@@ -27,6 +27,8 @@ import { FooterComponent } from './views/pages/components/share-component/footer
 
 import { EventPlannerComponent } from './views/pages/components/services/event-planner/event-planner.component';
 import { FaradanaCateringComponent } from './views/pages/components/services/faradana-catering/faradana-catering.component';
+import { ContactUsComponent } from './views/pages/share-form-modal/contact-us/contact-us.component';
+import { FaqComponent } from './views/pages/components/home/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { FaradanaCateringComponent } from './views/pages/components/services/far
     FooterComponent,
     
     EventPlannerComponent,
-    FaradanaCateringComponent
+    FaradanaCateringComponent,
+    ContactUsComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,

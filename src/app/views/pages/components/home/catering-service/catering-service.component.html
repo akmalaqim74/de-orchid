@@ -47,31 +47,40 @@
       </div>
 
       <!-- Center Image Column with Navigation Buttons -->
-      <div @fadeSlide class="relative flex flex-col justify-start items-center md:col-span-1 order-first md:order-none mb-8 md:mb-0">
-        <!-- Elegant Frame for the Image -->
-        <div class="relative p-1.5 bg-white rounded-xl shadow-2xl inline-block mb-5
+      <div @fadeSlide class="relative flex flex-col justify-start items-center md:col-span-1 order-first md:order-none mb-10 md:mb-0">
+        <div class="relative p-2.5 bg-white rounded-xl shadow-xl inline-block mb-6
                     transform transition-all duration-300 hover:scale-105 group">
-          <div class="absolute -inset-1 bg-gradient-to-r from-[#B08D57]/50 to-[#A1887F]/50 rounded-xl blur opacity-0 group-hover:opacity-75 transition-opacity duration-300"></div>
+          <div class="absolute -inset-2 bg-gradient-to-r from-brand-light/50 to-brand-dark/40 rounded-xl blur-lg opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
           <img [src]="currentPerson?.image" [alt]="currentPerson?.name"
-               class="relative block w-full h-auto max-w-[280px] sm:max-w-[320px] object-contain rounded-lg">
+               class="relative block w-full h-auto max-w-[280px] sm:max-w-[330px] object-contain rounded-lg border-2 border-white shadow-sm">
         </div>
-        <p class="text-2xl sm:text-3xl font-serif font-semibold text-[#6D4C41] text-center mb-1">
+        <p class="text-2xl sm:text-3xl font-serif font-bold text-neutral-dark text-center mb-1.5 text-shadow-md">
           {{ currentPerson?.name }}
         </p>
-        <p class="text-sm text-[#A1887F] text-center font-medium tracking-wider uppercase">
+        <p class="text-base text-brand-darker text-center font-medium tracking-wide">
          {{ (currentService?.title ?? '').split(' ')[0] }} Specialist
         </p>
 
-        <!-- Navigation Buttons - only show if multiple services -->
+        <!-- Navigation Buttons - Brighter on hover -->
         <ng-container *ngIf="(consultingServicesData?.consultingServicesData?.length || 0) > 1">
           <button (click)="prevService()" [disabled]="isLoading"
-            class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-2 sm:-translate-x-4 bg-white/70 backdrop-blur-sm border border-[#B08D57] text-[#B08D57] hover:bg-[#B08D57] hover:text-white transition-all duration-300 font-bold p-3 rounded-full shadow-lg z-10 disabled:opacity-50 disabled:cursor-not-allowed">
+            class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-3 sm:-translate-x-6 
+                   bg-white/80 backdrop-blur-sm border border-brand-DEFAULT/60 text-brand-dark 
+                   hover:bg-brand-DEFAULT hover:text-white hover:border-brand-dark
+                   transition-all duration-300 p-3.5 rounded-full shadow-xl hover:shadow-lg 
+                   focus:outline-none focus:ring-2 focus:ring-brand-light focus:ring-offset-1 
+                   disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white/80 disabled:hover:text-brand-dark z-10">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button (click)="nextService()" [disabled]="isLoading"
-            class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-2 sm:translate-x-4 bg-white/70 backdrop-blur-sm border border-[#B08D57] text-[#B08D57] hover:bg-[#B08D57] hover:text-white transition-all duration-300 font-bold p-3 rounded-full shadow-lg z-10 disabled:opacity-50 disabled:cursor-not-allowed">
+            class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-3 sm:translate-x-6
+                   bg-white/80 backdrop-blur-sm border border-brand-DEFAULT/60 text-brand-dark
+                   hover:bg-brand-DEFAULT hover:text-white hover:border-brand-dark
+                   transition-all duration-300 p-3.5 rounded-full shadow-xl hover:shadow-lg
+                   focus:outline-none focus:ring-2 focus:ring-brand-light focus:ring-offset-1
+                   disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-white/80 disabled:hover:text-brand-dark z-10">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>

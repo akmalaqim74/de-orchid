@@ -1,75 +1,173 @@
-<div class="flex flex-col justify-center w-full pt-4 bg-cover bg-center bg-no-repeat"
-[style.backgroundImage]="'url(' + backgroundImage + ')'">
-    <div class="md:bg-white/30 md:backdrop-blur-sm rounded-lg shadow-lg overflow-hidden mb-6 md:mb-10 w-full max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row items-start gap-4 md:gap-8 p-4 md:p-8">
-            <!-- Left content -->
-            <div class="flex-1 space-y-4 w-full md:w-1/3 flex flex-col justify-between h-full md:items-start items-center">
-                <div class="max-w-[310px] ">
-                    <h1 class="text-secondary text-2xl md:text-3xl font-semibold text-center font-script">
-                        Majlis Perkahwinan Bersama De'Orchid
-                    </h1>
-                    <div class="md:h-[280px]">
-                        <p class="text-gray-600 text-center md:text-left mt-4">
-                            Jadikan majlis perkahwinan anda lebih bermakna bersama De'Orchid. Kami sedia membantu merealisasikan impian indah anda.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="flex gap-4 justify-center md:justify-start">
-                    <button 
-                        class="bg-white border-2 border-primary text-secondary px-4 md:px-6 py-2 rounded-lg hover:bg-secondary-hover hover:text-white transition-all duration-300 text-sm md:text-base"
-                        [@fadeAnimation]>
-                        Get Started
-                    </button>
-                    <button 
-                        class="bg-white border-2 border-primary text-secondary px-4 md:px-6 py-2 rounded-lg hover:bg-secondary-hover hover:text-white transition-all duration-300 text-sm md:text-base"
-                        [@fadeAnimation]>
-                        Lebih Lanjut
-                    </button>
-                </div>
-            </div>
+<!-- Enhanced Main Section with Better Mobile View -->
+<div class="relative min-h-screen flex flex-col justify-center w-full pt-4 pb-8 bg-cover bg-center bg-no-repeat overflow-hidden"
+     [style.backgroundImage]="'url(' + backgroundImage + ')'">
+     
+  <!-- Reduced Background Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black/30 via-black/20 to-black/40"></div>
+  
+  <!-- Enhanced Main Container with Better Mobile Spacing -->
+  <div class="relative z-10 bg-white/8 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-xl overflow-hidden mb-4 md:mb-8 w-full max-w-7xl mx-auto border border-white/10 mx-2 md:mx-4">
+    <div class="flex flex-col lg:flex-row items-stretch min-h-[500px] md:min-h-[600px]">
+      
+      <!-- Enhanced Left Content Section with Better Mobile Layout -->
+      <div class="flex-1 lg:w-2/5 p-4 md:p-6 lg:p-12 flex flex-col justify-center items-center lg:items-start text-center lg:text-left">
+        <div class="max-w-lg space-y-4 md:space-y-6 w-full">
+          <!-- Enhanced Title with Better Mobile Typography -->
+          <div class="space-y-3 md:space-y-4">
+            <h1 class="text-white text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight font-serif drop-shadow-lg">
+              Majlis Perkahwinan Bersama 
+              <span class="text-yellow-200 block font-script text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-1">De'Orchid</span>
+            </h1>
             
-            <!-- Right side mosaic gallery - fixed row height -->
-            <div class="flex-1 md:w-2/3 mt-4 md:mt-0 bg-white/10 backdrop-blur">
-                <!-- Gallery container -->
-                <div class="w-full max-w-4xl mx-auto">
-                    <div class="w-full mx-auto ">
-                        <div class="relative h-[400px] w-[321px] md:min-w-[540px] px-4"> <!-- Adjusted height container -->
-                            <div *ngFor="let photo of weddingPhotos; let i = index"
-                                 [ngStyle]="getPhotoStyle(i)"
-                                 class="absolute rounded-sm shadow-sm transition-all duration-300 hover:z-50 hover:scale-105"
-                                 (click)="openImageModal(photo.thumbnailUrl)">
-                                <div class="relative group">
-                                    <img [src]="photo.thumbnailUrl"
-                                         [alt]="photo.title"
-                                         class="w-full h-full object-cover rounded-sm ">
-                                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 
-                                               transition-colors duration-300"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Decorative element -->
+            <div class="flex justify-center lg:justify-start">
+              <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-yellow-200 to-yellow-400 rounded-full"></div>
             </div>
+          </div>
+          
+          <!-- Enhanced Description with Better Mobile Readability -->
+          <div class="bg-white/15 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-white/20">
+            <p class="text-white text-base md:text-lg leading-relaxed font-medium">
+              Jadikan majlis perkahwinan anda lebih bermakna bersama De'Orchid. 
+              Kami sedia membantu merealisasikan impian indah anda dengan pelayanan yang istimewa.
+            </p>
+          </div>
+          
+          <!-- Enhanced Call-to-Action Buttons with Better Mobile Spacing -->
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start pt-2 md:pt-4">
+            <button 
+              (click)="getStarted()"
+              class="group relative bg-gradient-to-r from-yellow-300 to-yellow-400 text-gray-900 px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden"
+              [@fadeAnimation]>
+              <span class="relative z-10">Get Started</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-yellow-200 to-yellow-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </button>
             
+            <button (click)="scrollToSection('hall')"
+              class="group bg-white/15 backdrop-blur-sm border-2 border-white/40 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-base md:text-lg hover:bg-white/25 hover:border-white/60 transition-all duration-300 transform hover:scale-105"
+              [@fadeAnimation]>
+              Lebih Lanjut
+            </button>
+          </div>
+          
+          <!-- Enhanced Stats with Better Mobile Layout -->
+          <div class="grid grid-cols-3 gap-2 md:gap-4 pt-4 md:pt-8">
+            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 border border-white/20">
+              <div class="text-yellow-200 text-xl md:text-2xl font-bold">500+</div>
+              <div class="text-white/90 text-xs md:text-sm font-medium">Majlis Berjaya</div>
+            </div>
+            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 border border-white/20">
+              <div class="text-yellow-200 text-xl md:text-2xl font-bold">10+</div>
+              <div class="text-white/90 text-xs md:text-sm font-medium">Tahun Pengalaman</div>
+            </div>
+            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg md:rounded-xl p-2 md:p-3 border border-white/20">
+              <div class="text-yellow-200 text-xl md:text-2xl font-bold">100%</div>
+              <div class="text-white/90 text-xs md:text-sm font-medium">Kepuasan</div>
+            </div>
+          </div>
         </div>
+      </div>
+      
+      <!-- Enhanced Right Side Gallery with Better Mobile View -->
+      <div class="flex-1 lg:w-3/5 p-3 md:p-6 lg:p-8 flex items-center justify-center">
+        <div class="w-full max-w-4xl">
+          <!-- Gallery Header with Better Mobile Typography -->
+          <div class="text-center mb-4 md:mb-8">
+            <h3 class="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-2 drop-shadow-lg">Galeri Perkahwinan</h3>
+            <p class="text-white/90 text-sm md:text-base font-medium">Lihat koleksi majlis-majlis indah kami</p>
+            <div class="w-12 md:w-16 h-1 bg-yellow-300 mx-auto mt-2 md:mt-3 rounded-full"></div>
+          </div>
+          
+          <!-- Enhanced Gallery Container with Better Mobile Sizing -->
+          <div class="relative bg-white/8 backdrop-blur-sm rounded-2xl md:rounded-3xl p-3 md:p-6 border border-white/10">
+            <div class="relative h-[400px] md:h-[400px] lg:h-[450px] w-full max-w-[400px] md:max-w-[500px] lg:max-w-[580px] mx-auto overflow-hidden rounded-xl md:rounded-2xl">
+              <!-- Enhanced floating photo grid -->
+              <div *ngFor="let photo of weddingPhotos; let i = index"
+                   [ngStyle]="getPhotoStyle(i)"
+                   class="absolute rounded-lg md:rounded-xl shadow-lg transition-all duration-300 hover:z-50 hover:scale-110 hover:rotate-2 cursor-pointer group"
+                   (click)="openImageModal(photo.thumbnailUrl)"
+                   [@hallTransition]>
+                <div class="relative overflow-hidden rounded-lg md:rounded-xl">
+                  <img [src]="photo.thumbnailUrl"
+                       [alt]="photo.title"
+                       class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110">
+                  
+                  <!-- Enhanced overlay with better mobile visibility -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  <!-- Photo title overlay with better mobile text -->
+                  <div class="absolute bottom-1 md:bottom-2 left-1 md:left-2 right-1 md:right-2 text-white text-xs md:text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0 drop-shadow-lg">
+                    {{ photo.title || 'Wedding Gallery' }}
+                  </div>
+                  
+                  <!-- Hover icon with better mobile sizing -->
+                  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="bg-white/25 backdrop-blur-sm rounded-full p-2 md:p-3">
+                      <svg class="w-4 h-4 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Gallery navigation hint with better mobile text -->
+              <!-- <div class="absolute bottom-2 md:bottom-4 right-2 md:right-4 bg-white/15 backdrop-blur-sm rounded-full px-3 md:px-4 py-1 md:py-2 text-white text-xs md:text-sm font-medium border border-white/20">
+                {{ weddingPhotos.length }} Foto
+              </div> -->
+            </div>
+            
+            <!-- Fixed Gallery action button -->
+            <!-- <div class="text-center mt-4 md:mt-6">
+              <button 
+                (click)="navigateToGallery()"
+                class="bg-white/15 backdrop-blur-sm border border-white/25 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg md:rounded-xl hover:bg-white/25 hover:border-white/40 transition-all duration-300 font-semibold text-sm md:text-base transform hover:scale-105">
+                Lihat Semua Galeri
+              </button>
+            </div> -->
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-<div *ngIf="showModal" 
-class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-(click)="closeImageModal()">
-<div class="relative max-w-2xl max-h-[90vh] mx-4" (click)="$event.stopPropagation()">
-<img [src]="imagePath" 
-    alt="Profile" 
-    class="rounded-full max-h-[90vh] object-contain" />
-<button 
- (click)="closeImageModal()" 
- class="absolute top-2 right-2 bg-white rounded-full p-2 text-gray-800 hover:bg-gray-100">
- ✕
-</button>
-</div>
-</div>
-<script>
 
-    
-</script>
+<!-- Enhanced Modal with Better Mobile Experience -->
+<div *ngIf="showModal" 
+     class="fixed inset-0 bg-black/75 backdrop-blur-sm flex items-center justify-center z-50 p-2 md:p-4"
+     (click)="closeImageModal()"
+     [@fadeAnimation]>
+  
+  <div class="relative max-w-[95vw] md:max-w-4xl lg:max-w-5xl max-h-[90vh] mx-auto" (click)="$event.stopPropagation()">
+    <!-- Enhanced image container with better mobile sizing -->
+    <div class="relative bg-white rounded-2xl md:rounded-3xl p-2 md:p-4 shadow-2xl">
+      <img [src]="imagePath" 
+           alt="Wedding Gallery" 
+           class="max-h-[70vh] md:max-h-[80vh] w-auto mx-auto rounded-xl md:rounded-2xl object-contain shadow-lg" />
+      
+      <!-- Enhanced close button with better mobile positioning -->
+      <button 
+        (click)="closeImageModal()" 
+        class="absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-red-500 hover:bg-red-600 text-white rounded-full p-2 md:p-3 shadow-lg transition-all duration-300 transform hover:scale-110 group">
+        <svg class="w-4 h-4 md:w-6 md:h-6 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      
+      <!-- Enhanced instruction text for mobile -->
+      <div class="absolute bottom-2 md:bottom-4 left-1/2 transform -translate-x-1/2 bg-black/25 backdrop-blur-sm rounded-full px-3 md:px-4 py-1 md:py-2">
+        <span class="text-white text-xs md:text-sm font-medium">Klik di luar untuk tutup</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+  <app-contact-us 
+  [showContactModal]="showContactModal"
+  [businessInfo]="contactBusinessInfo"
+  (closeModal)="closeContactModal()">
+</app-contact-us>
+<!-- Reduced floating decorative elements -->
+<div class="fixed top-20 left-5 md:left-10 w-16 md:w-20 h-16 md:h-20 bg-yellow-200/5 rounded-full blur-lg animate-pulse"></div>
+<div class="fixed bottom-20 right-5 md:right-10 w-24 md:w-32 h-24 md:h-32 bg-pink-200/5 rounded-full blur-lg animate-pulse animation-delay-1000"></div>
+<div class="fixed top-1/2 left-1/4 w-12 md:w-16 h-12 md:h-16 bg-purple-200/5 rounded-full blur-lg animate-pulse animation-delay-2000"></div>

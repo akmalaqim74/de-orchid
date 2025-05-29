@@ -1,110 +1,250 @@
-<header class="bg-[#f2eae4] shadow-md ">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-    <div class="flex justify-between items-center">
-      <!-- Logo -->
-      <a href="#" class="flex items-center">
-        <img src="assets/logo/De-Orchid-logo.png" alt="Pchid Logo" class="h-8 w-auto">
+<!-- Enhanced Header with Static Position -->
+<header class="relative z-50 bg-[#f8f2ec] shadow-md border-b border-[#B08D57]/10">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16 md:h-20">
+      
+      <!-- Enhanced Logo -->
+      <a href="#" 
+         class="flex items-center group"
+         (mouseenter)="onLogoHover()"
+         (mouseleave)="onLogoLeave()">
+        <div class="relative">
+          <img src="assets/logo/De-Orchid-logo.png" 
+               alt="De'Orchid Wedding Logo" 
+               class="h-10 md:h-12 w-auto transition-all duration-300 transform"
+               [@logoHover]="logoHoverState">
+          <!-- Logo glow effect -->
+          <div class="absolute inset-0 bg-[#B08D57]/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+        </div>
+        <div class="ml-3 hidden sm:block">
+          <span class="font-serif text-xl md:text-2xl font-bold text-[#8c6d42] group-hover:text-[#B08D57] transition-colors duration-300">De'Orchid</span>
+          <p class="text-xs text-gray-600 font-medium tracking-wide">Premium Wedding Services</p>
+        </div>
       </a>
 
-      <!-- Desktop Navigation -->
-      <div class="hidden md:flex space-x-4">
-        <div class="relative inline-block text-left">
-          <button (click)="toggleServicesDropdown()" (mouseenter)="showServicesDropdown()"
-            class="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center">
+      <!-- Enhanced Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+        
+        <!-- Services Dropdown -->
+        <div class="relative dropdown-container">
+          <button (click)="scrollToSection('services')"
+                class="px-4 py-2 text-gray-700 hover:text-[#B08D57] font-semibold text-sm lg:text-base transition-all duration-200 rounded-lg hover:bg-[#B08D57]/5">
+          Services
+        </button>
+
+          <!-- <button (click)="toggleServicesDropdown()" 
+                  (mouseenter)="showServicesDropdown()"
+                  class="group px-4 py-2 text-gray-700 hover:text-[#B08D57] font-semibold text-sm lg:text-base transition-all duration-200 rounded-lg hover:bg-[#B08D57]/5 flex items-center">
             Services
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" 
+                 [class.rotate-180]="isServicesDropdownOpen"
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button> -->
+          
+          <!-- Enhanced Services Dropdown Menu -->
+          <!-- <div *ngIf="isServicesDropdownOpen" 
+               [@dropdown]
+               (mouseleave)="hideServicesDropdown()"
+               class="absolute left-0 mt-2 w-56 rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden z-50">
+            <div class="py-2">
+              <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+                Our Services
+              </div>
+              <a routerLink="/faradana-catering"
+                 class="group flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-[#B08D57]/10 hover:text-[#B08D57] transition-all duration-200">
+                <div class="w-8 h-8 bg-[#B08D57]/10 rounded-lg flex items-center justify-center mr-3 group-hover:bg-[#B08D57]/20 transition-colors duration-200">
+                  <svg class="w-4 h-4 text-[#B08D57]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-medium">Faradana Catering</div>
+                  <div class="text-xs text-gray-500">Premium catering services</div>
+                </div>
+              </a>
+            </div>
+          </div> -->
+        </div>
+
+        <!-- Hall Link -->
+        <button (click)="scrollToSection('hall')"
+                class="px-4 py-2 text-gray-700 hover:text-[#B08D57] font-semibold text-sm lg:text-base transition-all duration-200 rounded-lg hover:bg-[#B08D57]/5 cursor-pointer">
+          Hall
+        </button>
+
+        <!-- Pakej Link -->
+        <!-- <button (click)="navigateToSection('pakej')"
+                class="px-4 py-2 text-gray-700 hover:text-[#B08D57] font-semibold text-sm lg:text-base transition-all duration-200 rounded-lg hover:bg-[#B08D57]/5">
+          Pakej
+        </button> -->
+
+        <!-- Testimoni Link -->
+        <!-- <button (click)="navigateToSection('testimoni')"
+                class="px-4 py-2 text-gray-700 hover:text-[#B08D57] font-semibold text-sm lg:text-base transition-all duration-200 rounded-lg hover:bg-[#B08D57]/5">
+          Testimoni
+        </button> -->
+
+        <!-- Others Dropdown -->
+        <div class="relative dropdown-container">
+          <button (click)="toggleDropdown()" 
+                  (mouseenter)="showDropdown()"
+                  class="group px-4 py-2 text-gray-700 hover:text-[#B08D57] font-semibold text-sm lg:text-base transition-all duration-200 rounded-lg hover:bg-[#B08D57]/5 flex items-center">
+            Others
+            <svg class="w-4 h-4 ml-1 transition-transform duration-200 group-hover:rotate-180" 
+                 [class.rotate-180]="isDropdownOpen"
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <!-- Services Dropdown Menu -->
-          <div *ngIf="isServicesDropdownOpen" (mouseleave)="hideServicesDropdown()"
-            class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-            <div class="py-1">
-              <a routerLink="/faradana-catering"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Faradana Catering</a>
+          
+          <!-- Enhanced Others Dropdown Menu -->
+          <div *ngIf="isDropdownOpen" 
+               [@dropdown]
+               (mouseleave)="hideDropdown()"
+               class="absolute right-0 mt-2 w-48 rounded-xl bg-white shadow-xl border border-gray-100 overflow-hidden z-50">
+            <div class="py-2">
+              <button (click)="navigateToSection('about')"
+                      class="w-full text-left flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-[#B08D57]/10 hover:text-[#B08D57] transition-all duration-200">
+                <svg class="w-4 h-4 mr-3 text-[#B08D57]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                About Us
+              </button>
               
+              <button (click)="openContactModal()"
+                      class="w-full text-left flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-[#B08D57]/10 hover:text-[#B08D57] transition-all duration-200">
+                <svg class="w-4 h-4 mr-3 text-[#B08D57]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                Contact
+              </button>
+              
+              <button (click)="navigateToSection('faq')"
+                      class="w-full text-left flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-[#B08D57]/10 hover:text-[#B08D57] transition-all duration-200">
+                <svg class="w-4 h-4 mr-3 text-[#B08D57]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                FAQ
+              </button>
             </div>
           </div>
         </div>
-        <a (click)="scrollToSection('hall')"
-          class="text-gray-600 hover:text-gray-900 font-medium cursor-pointer">Hall</a>
-        <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Pakej</a>
-        <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Testimoni</a>
-        <div class="relative inline-block text-left">
-          <button (click)="toggleDropdown()" (mouseenter)="showDropdown()"
-            class="text-gray-600 hover:text-gray-900 font-medium inline-flex items-center">
-            Others
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
+
+        <!-- CTA Button -->
+        <div class="ml-4 pl-4 border-l border-gray-300">
+          <button (click)="openContactModal()"
+                  class="bg-gradient-to-r from-[#B08D57] to-[#C4975C] hover:from-[#8c6d42] hover:to-[#B08D57] text-white px-6 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            Get Quote
           </button>
-          <!-- Dropdown Menu -->
-          <div *ngIf="isDropdownOpen" (mouseleave)="hideDropdown()"
-            class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-            <div class="py-1">
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">About Us</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">FAQ</a>
-            </div>
-          </div>
         </div>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button (click)="toggleMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
-        [attr.aria-expanded]="isMenuOpen">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-          [class.hidden]="isMenuOpen">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-          [class.hidden]="!isMenuOpen">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
+      <!-- Enhanced Mobile Menu Button -->
+      <button (click)="toggleMenu()" 
+              class="md:hidden relative p-2 rounded-lg hover:bg-[#B08D57]/10 focus:outline-none focus:ring-2 focus:ring-[#B08D57]/50 transition-all duration-200"
+              [attr.aria-expanded]="isMenuOpen"
+              [attr.aria-label]="isMenuOpen ? 'Close menu' : 'Open menu'">
+        <div class="w-6 h-6 relative">
+          <!-- Hamburger Icon -->
+          <span class="absolute top-1 left-0 w-6 h-0.5 bg-gray-700 transition-all duration-300"
+                [class.rotate-45]="isMenuOpen"
+                [class.translate-y-2]="isMenuOpen"></span>
+          <span class="absolute top-3 left-0 w-6 h-0.5 bg-gray-700 transition-all duration-300"
+                [class.opacity-0]="isMenuOpen"></span>
+          <span class="absolute top-5 left-0 w-6 h-0.5 bg-gray-700 transition-all duration-300"
+                [class.-rotate-45]="isMenuOpen"
+                [class.-translate-y-2]="isMenuOpen"></span>
+        </div>
       </button>
     </div>
 
-    <!-- Mobile Navigation -->
-    <div class="md:hidden" [class.hidden]="!isMenuOpen">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <button (click)="toggleServicesDropdown()"
-          class="flex justify-between items-center w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+    <!-- Enhanced Mobile Navigation -->
+    <div class="md:hidden overflow-hidden" [@mobileMenu]="getMenuState()">
+      <div class="px-2 pt-4 pb-6 space-y-2 bg-white/95 backdrop-blur-md border-t border-[#B08D57]/10 mt-2 rounded-b-xl">
+        
+        <!-- Mobile Services Dropdown -->
+        <div class="space-y-1">
+          <button (click)="scrollToSection('services')"
+                class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
           Services
-          <svg class="w-4 h-4 ml-1" [class.rotate-180]="isServicesDropdownOpen" fill="none" stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
         </button>
-        <div *ngIf="isServicesDropdownOpen" class="pl-4">
-          <a routerLink="/faradana-catering"
-            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Faradana Catering</a>
-          
-            
+          <!-- <button (click)="toggleServicesDropdown()"
+                  class="flex justify-between items-center w-full px-4 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+            Services
+            <svg class="w-5 h-5 transition-transform duration-200" 
+                 [class.rotate-180]="isServicesDropdownOpen" 
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div *ngIf="isServicesDropdownOpen" class="pl-4 space-y-1">
+            <a routerLink="/faradana-catering"
+               class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+              Faradana Catering
+            </a>
+          </div> -->
         </div>
-        <a (click)="scrollToSection('hall')"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 cursor-pointer">Hall</a>
-        <a href="#"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Pake</a>
-        <a href="#"
-          class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Testimoni</a>
-        <button (click)="toggleMobileDropdown()"
-          class="flex justify-between items-center w-full px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
-          Others
-          <svg class="w-4 h-4 ml-1" [class.rotate-180]="isMobileDropdownOpen" fill="none" stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
+
+        <!-- Mobile Navigation Links -->
+        <button (click)="scrollToSection('hall')"
+                class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+          Hall
         </button>
-        <div *ngIf="isMobileDropdownOpen" class="pl-4">
-          <a href="#"
-            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">About
-            Us</a>
-          <a href="#"
-            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Contact</a>
-          <a href="#"
-            class="block px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">FAQ</a>
+
+        <!-- <button (click)="navigateToSection('pakej')"
+                class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+          Pakej
+        </button>
+
+        <button (click)="navigateToSection('testimoni')"
+                class="block w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+          Testimoni
+        </button> -->
+
+        <!-- Mobile Others Dropdown -->
+        <div class="space-y-1">
+          <button (click)="toggleMobileDropdown()"
+                  class="flex justify-between items-center w-full px-4 py-3 rounded-xl text-base font-semibold text-gray-700 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+            Others
+            <svg class="w-5 h-5 transition-transform duration-200" 
+                 [class.rotate-180]="isMobileDropdownOpen" 
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div *ngIf="isMobileDropdownOpen" class="pl-4 space-y-1">
+            <button (click)="navigateToSection('about')"
+                    class="block w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+              About Us
+            </button>
+            <button (click)="openContactModal()"
+                    class="block w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+              Contact
+            </button>
+            <button (click)="navigateToSection('faq')"
+                    class="block w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-[#B08D57] hover:bg-[#B08D57]/5 transition-all duration-200">
+              FAQ
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile CTA Button -->
+        <div class="pt-4 mt-4 border-t border-[#B08D57]/10">
+          <button (click)="openContactModal()"
+                  class="w-full bg-gradient-to-r from-[#B08D57] to-[#C4975C] hover:from-[#8c6d42] hover:to-[#B08D57] text-white px-6 py-3 rounded-xl font-bold text-base transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            Get Quote Now
+          </button>
         </div>
       </div>
     </div>
   </nav>
 </header>
+
+<!-- Contact Modal Integration -->
+<app-contact-us 
+      [showContactModal]="showContactModal"
+      [businessInfo]="contactBusinessInfo"
+      (closeModal)="onCloseContactModal()">
+    </app-contact-us>

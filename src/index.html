@@ -1,17 +1,315 @@
 <!doctype html>
-<html lang="en">
+<!--
+  @lang {string} Language and optional region code for the document.
+  Helps search engines and browsers understand the content's language.
+  Example: "en" for English, "en-US" for US English, "ms-MY" for Malay (Malaysia).
+  CHANGE: Set to "en-MY" if primarily English for a Malaysian audience, or "ms-MY" if primarily Malay.
+-->
+<html lang="en-MY"> 
 <head>
   <meta charset="utf-8">
-  <title>De' Orchid</title>
-  <base href="/">
+
+  <!-- =============================================================== -->
+  <!-- CORE SEO METADATA -->
+  <!-- Purpose: Essential information for search engines to understand and rank your page. -->
+  <!-- =============================================================== -->
+
+  <!--
+    @title {string} The title of your webpage.
+    Displayed in browser tabs, bookmarks, and search engine results pages (SERPs).
+    Crucial for SEO. Should be unique, descriptive, and include primary keywords and brand name.
+    Length: Aim for 50-60 characters.
+    CHANGE: Customize with your business name, key services, and target location.
+  -->
+  <title>De'Orchid: Premier Wedding Planner & Event Organizer in Malaysia</title>
+
+  <!--
+    @description {string} A brief summary of the page's content.
+    Often displayed as the snippet below the title in SERPs.
+    Should be compelling, include keywords, and encourage clicks.
+    Length: Aim for 150-160 characters.
+    CHANGE: Write a unique, engaging description for De'Orchid's services.
+  -->
+  <meta name="description" content="De'Orchid crafts exquisite and memorable weddings across Malaysia. Your trusted wedding planner for personalized service, elegant design, and seamless event coordination. Contact De' Orchid today!">
+  
+  <!--
+    @keywords {string} A comma-separated list of keywords relevant to the page.
+    Less impactful for ranking than in the past, but can still provide context.
+    Focus on relevance and include both English and local language (e.g., Malay) terms if applicable.
+    CHANGE: Add relevant keywords for De'Orchid's services and target market.
+  -->
+  <meta name="keywords" content="wedding planner Malaysia, perancang perkahwinan Malaysia, De'Orchid, event organizer Malaysia, dream wedding, luxury weddings Malaysia, wedding services Kuala Lumpur, wedding packages Malaysia, majlis perkahwinan">
+
+  <!--
+    @viewport {string} Controls the page's dimensions and scaling on different devices.
+    Essential for responsive web design. "width=device-width, initial-scale=1" is standard.
+    NO CHANGE generally needed.
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!--
+    @base {string} Specifies the base URL for all relative URLs in a document.
+    For Angular applications, "/" is standard to ensure correct asset loading.
+    NO CHANGE generally needed for Angular CLI projects.
+  -->
+  <base href="/">
+
+  <!--
+    @favicon {link} Defines the icon displayed in the browser tab and bookmarks.
+    CHANGE: Ensure 'assets/logo/favicon.png' points to your actual favicon file.
+  -->
   <link rel="icon" type="image/x-icon" href="assets/logo/favicon.png">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!--
+    @apple-touch-icon {link} Icon for iOS devices when users add the site to their home screen.
+    Recommended size: 180x180px.
+    CHANGE: Create this image and update the 'href' path if you include it.
+  -->
+  <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+
+  <!-- =============================================================== -->
+  <!-- CANONICAL URL -->
+  <!-- Purpose: Specifies the preferred version of a webpage if multiple URLs lead to the same content.
+                Prevents duplicate content issues, which can harm SEO. VERY IMPORTANT. -->
+  <!-- =============================================================== -->
+  <!--
+    @canonical {link} The absolute URL of the preferred version of this page.
+    Should point to your live, primary domain (e.g., https://www.yourdomain.com/).
+    CHANGE: THIS IS CRITICAL. Replace 'https://www.deorchid.com.my/' with your ACTUAL production domain.
+  -->
+  <link rel="canonical" href="https://www.deorchid.com.my/"> 
+
+  <!-- =============================================================== -->
+  <!-- OPEN GRAPH (OG) TAGS - For Social Media Sharing (Facebook, LinkedIn, Pinterest etc.) -->
+  <!-- Purpose: Controls how your content appears when shared on social media platforms. -->
+  <!-- =============================================================== -->
+  <!--
+    @og:title {string} The title of your content as it should appear in the social graph.
+    Usually similar to your main <title> tag.
+    CHANGE: Customize if you want a slightly different title for social shares.
+  -->
+  <meta property="og:title" content="De'Orchid: Premier Wedding Planner & Event Organizer in Malaysia">
+  <!--
+    @og:description {string} A 1-2 sentence description of your content.
+    Usually similar to your meta description.
+    CHANGE: Customize if you want a slightly different description for social shares.
+  -->
+  <meta property="og:description" content="De'Orchid crafts exquisite and memorable weddings across Malaysia. Your trusted partner for personalized service, elegant design, and seamless event coordination.">
+  <!--
+    @og:type {string} The type of your object, e.g., "website", "article", "product".
+    "website" is suitable for the homepage.
+    NO CHANGE generally needed for the homepage.
+  -->
+  <meta property="og:type" content="website">
+  <!--
+    @og:url {string} The canonical URL of your page.
+    Should match your <link rel="canonical"> tag.
+    CHANGE: Replace with your ACTUAL production domain.
+  -->
+  <meta property="og:url" content="https://www.deorchid.com.my/">
+  <!--
+    @og:image {string} The URL of an image that should represent your content when shared.
+    Recommended size: 1200x630 pixels.
+    CHANGE: Replace with the URL of a high-quality, relevant image for De'Orchid.
+  -->
+  <meta property="og:image" content="https://www.deorchid.com.my/assets/logo/deorchid-social-preview.jpg">
+  <!--
+    @og:image:width {string} The width of the og:image in pixels.
+    NO CHANGE if using 1200px width.
+  -->
+  <meta property="og:image:width" content="1200">
+  <!--
+    @og:image:height {string} The height of the og:image in pixels.
+    NO CHANGE if using 630px height.
+  -->
+  <meta property="og:image:height" content="630">
+  <!--
+    @og:site_name {string} The name of your website (e.g., "De'Orchid").
+    CHANGE: Set to your business name.
+  -->
+  <meta property="og:site_name" content="De'Orchid">
+  <!--
+    @og:locale {string} The locale these tags are marked up in. Format: language_TERRITORY.
+    Example: "en_US", "ms_MY".
+    CHANGE: Set to "en_MY" or "ms_MY" based on your primary language and target audience.
+  -->
+  <meta property="og:locale" content="en_MY">
+  <!--
+    @fb:app_id {string} Optional: Your Facebook App ID if you use Facebook Insights or other integrations.
+    CHANGE: Add your Facebook App ID if applicable. Otherwise, remove or comment out.
+  -->
+  <!-- <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID"> -->
+
+  <!-- =============================================================== -->
+  <!-- TWITTER CARD TAGS - For Twitter Sharing -->
+  <!-- Purpose: Controls how your content appears when shared on Twitter. -->
+  <!-- =============================================================== -->
+  <!--
+    @twitter:card {string} The type of Twitter card to use.
+    "summary_large_image" is generally recommended for a more visual presentation.
+    Other options: "summary", "app", "player".
+    NO CHANGE generally needed if "summary_large_image" is desired.
+  -->
+  <meta name="twitter:card" content="summary_large_image">
+  <!--
+    @twitter:url {string} The canonical URL of your page.
+    Should match your <link rel="canonical"> and og:url.
+    CHANGE: Replace with your ACTUAL production domain.
+  -->
+  <meta name="twitter:url" content="https://www.deorchid.com.my/">
+  <!--
+    @twitter:title {string} The title of your content for Twitter.
+    Usually similar to og:title.
+    CHANGE: Customize if needed for Twitter.
+  -->
+  <meta name="twitter:title" content="De'Orchid: Premier Wedding Planner & Event Organizer in Malaysia">
+  <!--
+    @twitter:description {string} A description of your content for Twitter.
+    Usually similar to og:description. Max 200 characters.
+    CHANGE: Customize if needed for Twitter.
+  -->
+  <meta name="twitter:description" content="De'Orchid crafts exquisite and memorable weddings across Malaysia. Your trusted partner for personalized service, elegant design, and seamless event coordination.">
+  <!--
+    @twitter:image {string} The URL of an image for the Twitter card.
+    Should be the same as og:image.
+    CHANGE: Replace with the URL of your high-quality image.
+  -->
+  <meta name="twitter:image" content="https://www.deorchid.com.my/assets/logo/deorchid-social-preview.jpg">
+  <!--
+    @twitter:site {string} Optional: The Twitter @username of the website.
+    CHANGE: Add your De'Orchid Twitter handle if you have one (e.g., "@DeOrchidMY").
+  -->
+  <!-- <meta name="twitter:site" content="@YourDeOrchidTwitterHandle"> -->
+  <!--
+    @twitter:creator {string} Optional: The Twitter @username of the content creator/author.
+    Often the same as twitter:site for a business.
+    CHANGE: Add your De'Orchid Twitter handle if you have one.
+  -->
+  <!-- <meta name="twitter:creator" content="@YourDeOrchidTwitterHandle"> -->
+
+  <!-- =============================================================== -->
+  <!-- FONT PRELOADING & PRECONNECTING - For Performance -->
+  <!-- Purpose: Improves perceived page load speed by fetching critical resources earlier. -->
+  <!-- =============================================================== -->
+  <!--
+    @preconnect {link} Establishes an early connection to the specified domain,
+    reducing latency for subsequent requests to that domain (like font files).
+    NO CHANGE generally needed for Google Fonts.
+  -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  
+  <!--
+    @preload {link} Instructs the browser to download a resource as soon as possible.
+    Use for critical resources needed for the initial render (e.g., fonts used above the fold).
+    The `as="style"` attribute tells the browser it's a stylesheet.
+    The `onload` trick defers applying the stylesheet until loaded, then makes it a regular stylesheet.
+    CHANGE: Identify your critical fonts (e.g., Playfair Display, Lato if used for main headings/text visible on load)
+            and preload their respective Google Fonts CSS files.
+  -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap"></noscript>
+  
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"></noscript>
+
+  <!--
+   The `media="print" onload="this.media='all'"` technique
+    is a way to load CSS asynchronously. If you preload critical fonts, you might
+    not need this for those specific fonts, but it's fine for less critical ones.
+    NO CHANGE needed if this setup works for you, or adjust based on your font strategy.
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"></noscript>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></noscript>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&display=swap"></noscript>
+
+  <!-- =============================================================== -->
+  <!-- SCHEMA.ORG MARKUP (JSON-LD) - For Rich Snippets -->
+  <!-- Purpose: Provides structured data to search engines to help them understand your content
+                and potentially display rich snippets in search results. -->
+  <!-- =============================================================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org", // Specifies the vocabulary being used.
+    "@type": "WeddingPlanningService", // The specific type of your business. More specific types are better.
+                                     // Other options: "EventPlanning", "LocalBusiness".
+    "name": "De'Orchid Wedding Planner & Event Organizer", // Your full business name.
+    "description": "De'Orchid specializes in creating beautiful, personalized weddings and events throughout Malaysia. From concept to execution, we ensure a seamless and unforgettable experience.", // Business description.
+    "image": "https://www.deorchid.com.my/assets/logo/deorchid-social-preview.jpg", // URL of a representative image (same as og:image).
+    "logo": "https://www.deorchid.com.my/assets/logo/deorchid-logo-schema.png", // URL of your business logo (e.g., square, smaller).
+    "url": "https://www.deorchid.com.my/", // Your website's canonical URL.
+    "telephone": "+60-XXX-XXXXXXX", // Your business phone number. CHANGE to your actual number.
+    "priceRange": "$$$", // Optional: Indicates relative price (e.g., $, $$, $$$). Can also be "Contact for pricing".
+    "address": { // Your business address.
+      "@type": "PostalAddress",
+      // "streetAddress": "Your Street Address", // CHANGE if you have a physical office.
+      "addressLocality": "Kuala Lumpur", // CHANGE to your primary city.
+      "addressRegion": "WP Kuala Lumpur", // CHANGE to your primary state/federal territory abbreviation (e.g., SEL for Selangor).
+      // "postalCode": "Your Postal Code", // CHANGE if applicable.
+      "addressCountry": "MY" // "MY" for Malaysia.
+    },
+    "areaServed": [ // Specifies the geographic areas you serve. Important for local SEO.
+      {
+        "@type": "City", // Can be City, State, Country, AdministrativeArea.
+        "name": "Kuala Lumpur" // CHANGE or add cities you serve.
+      },
+      {
+        "@type": "State",
+        "name": "Selangor" // CHANGE or add states you serve.
+      },
+      {
+        "@type": "Country",
+        "name": "Malaysia"
+      }
+      // Add other specific cities/states you serve, e.g., Penang, Johor Bahru.
+    ],
+    "openingHoursSpecification": [ // Optional: Your business opening hours.
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [ // Array of days.
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00", // Opening time in HH:MM format.
+        "closes": "18:00" // Closing time in HH:MM format.
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "10:00",
+        "closes": "15:00"
+      }
+      // Add or remove specifications as needed. Remove entirely if not applicable.
+    ],
+    "sameAs": [ 
+      "https://www.facebook.com/YourDeOrchidPage", // CHANGE to your actual Facebook page URL.
+      "https://www.instagram.com/YourDeOrchidPage" // CHANGE to your actual Instagram profile URL.
+      // "https://www.pinterest.com/YourDeOrchidPage",
+      // "https://twitter.com/YourDeOrchidTwitterHandle"
+    ]
+  }
+  </script>
+
 </head>
+
 <body class="mat-typography">
   <app-root></app-root>
+
+  <!--
+    @noscript {element} Content displayed to users who have JavaScript disabled in their browser.
+    Good for accessibility and providing an alternative message.
+    CHANGE: Customize the message if desired.
+  -->
+  <noscript>
+    For the best experience, please enable JavaScript in your browser. De'Orchid Wedding Planner requires JavaScript to function correctly.
+  </noscript>
 </body>
 </html>
